@@ -143,6 +143,8 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
 .proto-item__sub{font-size:var(--fs-xs);color:var(--c-n-600);margin-top:2px;line-height:1.4}
 .proto-item--done .proto-item__title{color:var(--c-p-800)}
 .foto-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-3)}
+.foto-grid--single{grid-template-columns:1fr}
+.foto-grid--single .foto-slot{aspect-ratio:4/3;max-width:420px;margin:0 auto;width:100%}
 .foto-slot{position:relative;border:2px dashed var(--c-n-300);border-radius:var(--r-md);aspect-ratio:1;overflow:hidden;background:var(--c-n-50);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all var(--t-base) var(--easing);cursor:pointer}
 .foto-slot:active{transform:scale(.98)}
 .foto-slot--taken{border-style:solid;border-color:var(--c-ok)}
@@ -425,13 +427,12 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
   </div>
 
   <div class="section">
-    <div class="section__head"><div class="section__head__title"><span aria-hidden="true">📸</span> Fotografías obligatorias</div><span class="section__head__status" id="stFotos">0/2</span></div>
+    <div class="section__head"><div class="section__head__title"><span aria-hidden="true">📸</span> Fotografía obligatoria</div><span class="section__head__status" id="stFotos">0/1</span></div>
     <div class="section__body">
-      <div class="foto-grid">
-        <div class="foto-slot" id="slot1"><img class="foto-slot__img" id="prev1" alt="Cepa"><span class="foto-slot__icon">📸</span><span class="foto-slot__label">Foto 1<br>Cepa preparada</span><span class="foto-slot__check">✓</span><input type="file" accept="image/*" capture="environment" id="fi1" onchange="capturarFoto(1,this)"></div>
-        <div class="foto-slot" id="slot2"><img class="foto-slot__img" id="prev2" alt="Finalizado"><span class="foto-slot__icon">🌳</span><span class="foto-slot__label">Foto 2<br>Árbol finalizado</span><span class="foto-slot__check">✓</span><input type="file" accept="image/*" capture="environment" id="fi2" onchange="capturarFoto(2,this)"></div>
+      <div class="foto-grid foto-grid--single">
+        <div class="foto-slot" id="slot1"><img class="foto-slot__img" id="prev1" alt="Árbol finalizado"><span class="foto-slot__icon">🌳</span><span class="foto-slot__label">Árbol finalizado<br>De frente, cepa con riego</span><span class="foto-slot__check">✓</span><input type="file" accept="image/*" capture="environment" id="fi1" onchange="capturarFoto(1,this)"></div>
       </div>
-      <p class="foto-nota">Sugerido: <code>ARB-00001_cepa.jpg</code> · <code>ARB-00001_finalizado.jpg</code></p>
+      <p class="foto-nota">📌 Toma de frente, que se vea el árbol completo y la cepa con riego · Sugerido: <code>ARB-00001_finalizado.jpg</code></p>
       <div class="field" style="margin-top:var(--s-3)"><label class="field__label" for="obs">Observaciones <span class="opt">opcional</span></label>
         <textarea id="obs" placeholder="Estado del árbol, condiciones del terreno, incidencias…"></textarea>
       </div>
@@ -499,12 +500,11 @@ const FIELDS = [
   { id:'condicion', label:'Condición general', group:'itree' },
   { id:'protoHoyo', label:'Protocolo: Hoyo', group:'proto' },
   { id:'protoRiego', label:'Protocolo: Riego', group:'proto' },
-  { id:'foto1', label:'Foto 1 (cepa)', group:'fotos' },
-  { id:'foto2', label:'Foto 2 (finalizado)', group:'fotos' },
+  { id:'foto1', label:'Foto árbol finalizado', group:'fotos' },
 ];
 const TOTAL_FIELDS = FIELDS.length;
 const GROUP_COUNTS = FIELDS.reduce((acc,f)=>{ acc[f.group]=(acc[f.group]||0)+1; return acc; },{});
-let watchId=null, readings=[], gpsLocked=null, foto1=null, foto2=null;
+let watchId=null, readings=[], gpsLocked=null, foto1=null;
 let registros = JSON.parse(localStorage.getItem('r11k_v2') || '[]');
 let valTimer=null;
 function $(id){ return document.getElementById(id); }
@@ -737,7 +737,7 @@ async function capturarFoto(n,input){
     const prev=$('prev'+n);
     prev.src=comp; prev.style.display='block';
     $('slot'+n).classList.add('foto-slot--taken');
-    if (n===1) foto1=comp; else foto2=comp;
+    if (n===1) foto1=comp;
     const kb=Math.round(comp.length*0.75/1024);
     toast('📸 Foto '+n+' guardada (~'+kb+' KB)','ok');
     vibrate(30);
@@ -752,7 +752,6 @@ function resetFotoInput(n){
 function valOf(id){
   if (id==='gps') return !!gpsLocked;
   if (id==='foto1') return !!foto1;
-  if (id==='foto2') return !!foto2;
   if (id==='protoHoyo'||id==='protoRiego') return $(id).checked;
   if (id==='arbolNum') return !!$('arbolNum').value;
   if (id==='idParque') return $('manualToggle').checked || !!$('idParque').value.trim();
@@ -807,7 +806,6 @@ function scrollToField(id){
   if (id==='gps') target=document.querySelector('.gps');
   if (id==='protoHoyo'||id==='protoRiego') target=$(id+'-label');
   if (id==='foto1') target=$('slot1');
-  if (id==='foto2') target=$('slot2');
   const itreeIds=['dap','altura','suelo','copa','condicion'];
   const protoIds=['protoHoyo','protoRiego'];
   if (itreeIds.includes(id)) $('sec-itree').classList.remove('is-collapsed');
@@ -837,7 +835,7 @@ function guardarRegistro(){
       suelo:$('suelo').value, copa:parseFloat($('copa').value), condicion:$('condicion').value,
       protoHoyo:$('protoHoyo').checked, protoRiego:$('protoRiego').checked,
       lat:gpsLocked.lat, lon:gpsLocked.lon, acc:gpsLocked.acc, effAcc:gpsLocked.effAcc,
-      foto1, foto2, estado:'Plantado',
+      foto1, estado:'Plantado',
       ts:new Date().toISOString(), fecha:new Date().toLocaleString('es-MX')
     };
     registros.push(reg);
@@ -845,7 +843,7 @@ function guardarRegistro(){
     try { localStorage.setItem('r11k_v2',JSON.stringify(registros)); guardado=true; }
     catch(e){
       try {
-        const sinFotos=registros.map(r=>({...r,foto1:null,foto2:null}));
+        const sinFotos=registros.map(r=>({...r,foto1:null}));
         localStorage.setItem('r11k_v2',JSON.stringify(sinFotos));
         guardado=true;
         toast('⚠️ Guardado sin fotos (almacenamiento lleno). Exporta CSV.','err');
@@ -887,8 +885,8 @@ function resetForm(idGuardado){
   });
   $('sec-itree').classList.add('is-collapsed');
   $('sec-proto').classList.add('is-collapsed');
-  foto1=null; foto2=null;
-  [1,2].forEach(n => {
+  foto1=null;
+  [1].forEach(n => {
     const prev=$('prev'+n);
     prev.removeAttribute('src'); prev.style.display='none';
     $('slot'+n).classList.remove('foto-slot--taken');
@@ -962,14 +960,14 @@ function renderRegistros(){
           <span class="reg-chip">${r.condicion||'—'}</span>
           <span class="reg-chip ${r.protoHoyo&&r.protoRiego?'reg-chip--ok':'reg-chip--warn'}">${r.protoHoyo&&r.protoRiego?'✅ Protocolo':'⚠️ Protocolo incompleto'}</span>
         </div>
-        ${(r.foto1||r.foto2)?'<div class="reg-fotos">'+(r.foto1?'<img src="'+r.foto1+'" alt="Cepa">':'')+(r.foto2?'<img src="'+r.foto2+'" alt="Finalizado">':'')+'</div>':''}
+        ${r.foto1?'<div class="reg-fotos"><img src="'+r.foto1+'" alt="Árbol finalizado"></div>':''}
       </div>
     </article>`).join('');
 }
 
 function exportCSV(){
   if (!registros.length){ toast('Sin registros','err'); return; }
-  const cols=['ID_Arbol','Num','ID_Parque','Asesor','Mes','Ejecutor','Parque','Colonia','Nombre_Comun','Nombre_Cientifico','Codigo_iTree','iTree_En_BD','iTree_Alternativa','Registrado_Por','Latitud','Longitud','Precision_Efectiva_m','Precision_Raw_m','DAP_cm','Altura_m','Suelo_Circundante','Copa_Viva_pct','Condicion_General','Proto_Hoyo','Proto_Riego_Asentamiento','Estado','Fecha_Hora','Observaciones','Foto1','Foto2'];
+  const cols=['ID_Arbol','Num','ID_Parque','Asesor','Mes','Ejecutor','Parque','Colonia','Nombre_Comun','Nombre_Cientifico','Codigo_iTree','iTree_En_BD','iTree_Alternativa','Registrado_Por','Latitud','Longitud','Precision_Efectiva_m','Precision_Raw_m','DAP_cm','Altura_m','Suelo_Circundante','Copa_Viva_pct','Condicion_General','Proto_Hoyo','Proto_Riego_Asentamiento','Estado','Fecha_Hora','Observaciones','Foto'];
   const rows=registros.map(r=>[
     r.id,r.num,r.idParque||'',r.asesor||'',r.sprint,r.ejecutor,
     '"'+r.parque+'"','"'+(r.colonia||'')+'"','"'+(r.especie||'').split('(')[0].trim()+'"',
@@ -980,7 +978,7 @@ function exportCSV(){
     '"'+(r.suelo||'')+'"', r.copa!==undefined?r.copa:'', r.condicion||'',
     r.protoHoyo?'Sí':'No', r.protoRiego?'Sí':'No',
     r.estado, r.fecha, '"'+(r.obs||'')+'"',
-    r.foto1?r.id+'_cepa.jpg':'', r.foto2?r.id+'_finalizado.jpg':''
+    r.foto1?r.id+'_finalizado.jpg':''
   ].join(','));
   const csv=[cols.join(','),...rows].join('\n');
   const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8;'});
@@ -993,8 +991,7 @@ function exportCSV(){
 function exportFotos(){
   const items=[];
   registros.forEach(r => {
-    if (r.foto1) items.push({data:r.foto1,nombre:r.id+'_cepa.jpg'});
-    if (r.foto2) items.push({data:r.foto2,nombre:r.id+'_finalizado.jpg'});
+    if (r.foto1) items.push({data:r.foto1,nombre:r.id+'_finalizado.jpg'});
   });
   if (!items.length){ toast('Sin fotos guardadas','err'); return; }
   toast('📷 Descargando '+items.length+' fotos…');

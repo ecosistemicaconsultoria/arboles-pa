@@ -23,8 +23,12 @@
    y Amapa es Tabebuia rosea (TARO), no Handroanthus impetiginosus. Se cambia la foto de la Lluvia de oro
    y los registros ya capturados se corrigen solos al abrir la app.
    v19 (22-sep-2026): base de parques actualizada desde la hoja "Septiembre" del Sheets de
-   Parques Alegres: 791 parques (entran 8, salen 12, cambian 282, casi todos acentos de colonia). */
-const CACHE_VERSION = 'apa-2026-09-22-v19';
+   Parques Alegres: 791 parques (entran 8, salen 12, cambian 282, casi todos acentos de colonia).
+   v20 (23-sep-2026): borrador automático del árbol en captura, papelera de 7 días con Deshacer y
+   Recapturar, y aviso de ID repetido. Correcciones: la restauración ya no puede tirar otro registro
+   cuando falta espacio, el borrado avisa si no se pudo guardar, "Limpiar" libera las fotos de la
+   papelera y el CSV escapa las comillas dentro de los textos. */
+const CACHE_VERSION = 'apa-2026-09-23-v20';
 const CORE = [
   './',
   './index.html',

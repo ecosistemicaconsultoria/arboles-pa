@@ -272,6 +272,36 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
 .tip--cond b{color:inherit}
 .tip{background:var(--c-a-100);border-radius:var(--r-md);padding:var(--s-2) var(--s-3);font-size:var(--fs-xs);color:var(--c-a-700);line-height:1.5;margin-top:var(--s-2)}
 @media(min-width:640px){.gps,.section,.pending,.reg-card{margin-left:auto;margin-right:auto;max-width:600px}}
+/* ── Borrador recuperado ─────────────────────────────────────── */
+.borrador{display:none;gap:var(--s-2);align-items:flex-start;background:var(--c-a-100);border:1px solid var(--c-a-700);border-radius:var(--r-md);padding:var(--s-3);margin-bottom:var(--s-3)}
+.borrador--show{display:flex}
+.borrador__ico{font-size:22px;line-height:1.1;flex:none}
+.borrador__txt{flex:1;font-size:var(--fs-sm);color:var(--c-a-700);line-height:1.45}
+.borrador__txt b{display:block;font-size:var(--fs-md);margin-bottom:2px}
+.borrador__acts{display:flex;gap:var(--s-2);margin-top:var(--s-2);flex-wrap:wrap}
+.borrador__acts button{border:0;border-radius:var(--r-full);padding:9px 18px;font-size:var(--fs-sm);font-weight:650;cursor:pointer;min-height:42px}
+.bd-si{background:var(--c-a-700);color:var(--c-w)}
+.bd-no{background:transparent;color:var(--c-a-700);box-shadow:inset 0 0 0 1.5px var(--c-a-700)}
+/* ── Eliminar registro y papelera ────────────────────────────── */
+.reg-card__head{position:relative}
+.reg-card__del{border:0;background:transparent;font-size:17px;line-height:1;cursor:pointer;padding:8px;margin:-8px -6px -8px 0;border-radius:var(--r-full);opacity:.55}
+.reg-card__del:hover,.reg-card__del:focus{opacity:1;background:rgba(0,0,0,.06)}
+.dup-warn{display:none;margin-top:var(--s-2);font-size:var(--fs-xs);color:var(--c-err);font-weight:600;line-height:1.4}
+.dup-warn--show{display:block}
+.dup-warn--ok{color:var(--c-ok)}
+.pap-btns{display:flex;gap:var(--s-2);flex:none}
+.pap-rec{background:var(--c-n-600,#666)!important}
+.papelera{margin-top:var(--s-4)}
+.papelera__head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-2);width:100%;border:0;background:transparent;padding:var(--s-2) 0;cursor:pointer;font-size:var(--fs-sm);font-weight:650;color:var(--c-n-600,#6b7280);min-height:44px}
+.papelera__body{display:none;flex-direction:column;gap:var(--s-2)}
+.papelera__body--show{display:flex}
+.pap-item{display:flex;align-items:center;justify-content:space-between;gap:var(--s-2);background:var(--c-n-100,#f3f4f6);border-radius:var(--r-md);padding:var(--s-2) var(--s-3);font-size:var(--fs-xs);line-height:1.35}
+.pap-item b{display:block;font-size:var(--fs-sm)}
+.pap-item button{flex:none;border:0;background:var(--c-ok);color:var(--c-w);border-radius:var(--r-full);padding:8px 14px;font-size:var(--fs-xs);font-weight:650;cursor:pointer;min-height:40px}
+.pap-vaciar{border:0;background:transparent;color:var(--c-err);font-size:var(--fs-xs);font-weight:650;cursor:pointer;padding:var(--s-2);min-height:40px;align-self:flex-start}
+.undo{position:fixed;bottom:calc(var(--savebar-h) + 12px);left:50%;transform:translateX(-50%) translateY(20px);display:flex;align-items:center;gap:var(--s-3);background:var(--c-n-900);color:var(--c-w);padding:10px 12px 10px 20px;border-radius:var(--r-full);font-size:var(--fs-sm);font-weight:600;opacity:0;transition:all var(--t-base) var(--easing);pointer-events:none;z-index:1000;max-width:92vw;box-shadow:var(--sh-3)}
+.undo--show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.undo button{border:0;background:var(--c-w);color:var(--c-n-900);border-radius:var(--r-full);padding:8px 16px;font-size:var(--fs-xs);font-weight:700;cursor:pointer;min-height:40px}
 </style>
 </head>
 <body>
@@ -297,6 +327,17 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
 <div class="banner banner--ok" id="bannerOk" role="status"><span aria-hidden="true">✅</span><div>Árbol guardado — ID: <strong id="bannerOkID"></strong></div></div>
 
 <section id="tab-registrar" class="tab-content" data-active="true" role="tabpanel">
+  <div class="borrador" id="borradorAviso" role="status">
+    <span class="borrador__ico" aria-hidden="true">🌱</span>
+    <div class="borrador__txt">
+      <b>Recuperamos el árbol que estabas capturando</b>
+      <span id="borradorDetalle">Se guardó solo antes de que se cerrara la app.</span>
+      <div class="borrador__acts">
+        <button type="button" class="bd-si" onclick="restaurarBorrador()">Continuar ese árbol</button>
+        <button type="button" class="bd-no" onclick="descartarBorrador()">Empezar uno nuevo</button>
+      </div>
+    </div>
+  </div>
   <div class="gps">
     <div class="gps__head">
       <span class="gps__icon" aria-hidden="true">📍</span>
@@ -459,6 +500,7 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
     <div class="section__body">
       <div class="field" id="f-num"><label class="field__label" for="arbolNum">Número consecutivo <span class="req">*</span></label>
         <input type="number" id="arbolNum" min="1" placeholder="Ej: 42" inputmode="numeric" oninput="actualizarID()">
+        <p class="dup-warn" id="dupWarn"></p>
       </div>
       <div class="id-display"><div class="id-display__value" id="arbolID">ARB-00000</div><div class="id-display__label">ID generado automáticamente</div></div>
     </div>
@@ -571,6 +613,13 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
     </div>
   </div>
   <div id="regList"></div>
+  <div class="papelera" id="papeleraBox" style="display:none">
+    <button type="button" class="papelera__head" id="papeleraHead" onclick="togglePapelera()"></button>
+    <div class="papelera__body" id="papeleraBody">
+      <div id="papeleraList"></div>
+      <button type="button" class="pap-vaciar" onclick="vaciarPapelera()">Vaciar papelera ahora</button>
+    </div>
+  </div>
 </section>
 
 <section id="tab-monitoreo" class="tab-content" role="tabpanel">
@@ -661,6 +710,7 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="undo" id="undoBar" role="status" aria-live="polite"><span id="undoTxt"></span><button type="button" onclick="deshacerBorrado()">Deshacer</button></div>
 <script>
 const ESPECIES_CAT = {
   'Chinito (Ebenopsis ebano)':                    { sci:'Ebenopsis ebano',             itree:'EBEB',   inBD:'Sí',      alt:null },
@@ -708,6 +758,10 @@ const TOTAL_FIELDS = FIELDS.length;
 const GROUP_COUNTS = FIELDS.reduce((acc,f)=>{ acc[f.group]=(acc[f.group]||0)+1; return acc; },{});
 let watchId=null, readings=[], gpsLocked=null, foto1=null, foto2=null;
 let registros = JSON.parse(localStorage.getItem('r11k_v2') || '[]');
+/* Papelera: los registros borrados se guardan 7 días por si el borrado fue un error.
+   No aparecen en la lista, ni en los contadores, ni en el CSV, ni en las fotos. */
+const PAPELERA_KEY='papelera_v1', PAPELERA_DIAS=7;
+let papelera = JSON.parse(localStorage.getItem(PAPELERA_KEY) || '[]');
 let deviceToken = localStorage.getItem('deviceToken');
 if (!deviceToken) {
   deviceToken = Math.random().toString(16).slice(2,6).toUpperCase();
@@ -794,6 +848,14 @@ window.addEventListener('load', () => {
   actualizarValidacion();
   // Revalidar al instante con cada interacción para desbloquear la siguiente sección sin retraso
   ['input','change','click'].forEach(t => document.addEventListener(t, () => setTimeout(actualizarValidacion,0)));
+  purgarPapelera();
+  renderPapelera();
+  ofrecerBorrador();          // si quedó un árbol a medias, se ofrece recuperarlo
+  borradorActivo=true;        // a partir de aquí cada cambio se va guardando solo
+  ['input','change'].forEach(t => document.addEventListener(t, anotarBorrador));
+  // El sistema puede cerrar la pestaña sin avisar: último guardado al ocultarse
+  document.addEventListener('visibilitychange', () => { if (document.hidden) guardarBorrador(); });
+  window.addEventListener('pagehide', guardarBorrador);
   iniciarGPS();
   valTimer=setInterval(actualizarValidacion, 350);
 });
@@ -882,6 +944,7 @@ function selectEspecie(val) {
   const el = document.getElementById(safeId);
   if (el) el.classList.add('is-active');
   onEspecieChange();
+  anotarBorrador();
   if (typeof updateProgress === 'function') updateProgress();
 }
 function onEspecieChange() {
@@ -974,12 +1037,14 @@ function lockGPS(){
   setGPSMsg('✅ Coordenadas bloqueadas — precisión efectiva ±'+gpsLocked.effAcc.toFixed(2)+' m.','good');
   setGPSBadge('🔒 ±'+gpsLocked.effAcc.toFixed(2)+' m','good');
   vibrate(40);
+  anotarBorrador();
 }
 function unlockGPS(){
   gpsLocked=null;
   const btn=$('btnLock');
   btn.disabled=true; btn.className='btn-lock'; btn.innerHTML='🔒 Esperando señal…'; btn.onclick=lockGPS;
   setGPSMsg('GPS liberado. Espera nueva estabilización.','wait');
+  anotarBorrador();
 }
 function setGPSMsg(txt,cls){
   const el=$('gpsMsg');
@@ -1040,6 +1105,7 @@ async function capturarFoto(n,input){
     const kb=Math.round(comp.length*0.75/1024);
     toast('📸 Foto '+n+' guardada (~'+kb+' KB)','ok');
     vibrate(30);
+    anotarBorrador();
   };
   reader.readAsDataURL(file);
 }
@@ -1185,6 +1251,7 @@ function actualizarID(){
   const n=parseInt($('arbolNum').value)||0;
   const prefix = $('idParque').value.trim() || 'MANUAL';
   $('arbolID').textContent = prefix+'-'+deviceToken+'-'+String(n).padStart(5,'0');
+  revisarDuplicado();
 }
 
 function guardarRegistro(){
@@ -1282,13 +1349,275 @@ function resetForm(idGuardado){
     b.style.display='flex'; b.style.opacity='1';
     setTimeout(()=>{ b.style.opacity='0'; setTimeout(()=>{b.style.display='none';},400); },2500);
   }
+  limpiarBorrador();   // el árbol ya está guardado: el borrador deja de tener sentido
+  $('dupWarn')?.classList.remove('dup-warn--show');
   switchTab('registrar');
   window.scrollTo({top:0,behavior:'smooth'});
   // El registro ya quedó en localStorage: se puede recargar con seguridad
   if (actualizacionPendiente) setTimeout(() => location.reload(), 2600);
 }
 
+/* ════════════════════════════════════════════════════════════
+   BORRADOR AUTOMÁTICO
+   Nada se guardaba hasta pulsar "Guardar árbol": una recarga —a propósito,
+   por un "deslizar para actualizar" sin querer, o porque el sistema cerró la
+   pestaña al entrar una llamada— costaba volver a bloquear el GPS, que son
+   25 lecturas parado sobre el árbol. Ahora el árbol en captura se guarda
+   solo con cada cambio y se ofrece al volver a abrir.
+   ════════════════════════════════════════════════════════════ */
+const BORRADOR_KEY='borrador_v1';
+const CAMPOS_BORRADOR=['idParque','asesor','parque','colonia','mes','ejecutor','registrante',
+  'arbolNum','especie','nombreCientifico','obs','dap','altura','suelo','copa','condicion'];
+let borradorActivo=false, borradorTimer=null;
+
+/* ¿Hay algo capturado que valga la pena conservar? */
+function hayCaptura(){
+  return !!(gpsLocked || foto1 || foto2 || $('arbolNum').value || $('especie').value
+    || ($('obs').value||'').trim() || PROTO_PASOS.some(p => $('proto'+p).checked));
+}
+
+function guardarBorrador(){
+  if (!borradorActivo) return;
+  if (!hayCaptura()){ try{ localStorage.removeItem(BORRADOR_KEY); }catch(_){} return; }
+  const b={ ts:Date.now(), gps:gpsLocked, foto1:foto1, foto2:foto2, campos:{}, proto:{} };
+  CAMPOS_BORRADOR.forEach(id => { const el=$(id); if (el) b.campos[id]=el.value; });
+  PROTO_PASOS.forEach(p => { b.proto[p]=$('proto'+p).checked; });
+  try { localStorage.setItem(BORRADOR_KEY, JSON.stringify(b)); }
+  catch(e){
+    /* Sin espacio para las fotos: se conserva el resto, que es lo caro de recuperar */
+    try { localStorage.setItem(BORRADOR_KEY, JSON.stringify({...b, foto1:null, foto2:null, fotosOmitidas:true})); }
+    catch(_){}
+  }
+}
+/* Se llama en cada tecla: se agrupa para no escribir en disco a cada letra */
+function anotarBorrador(){ clearTimeout(borradorTimer); borradorTimer=setTimeout(guardarBorrador,600); }
+function limpiarBorrador(){ clearTimeout(borradorTimer); try{ localStorage.removeItem(BORRADOR_KEY); }catch(_){} }
+
+function leerBorrador(){
+  try { const b=JSON.parse(localStorage.getItem(BORRADOR_KEY)||'null'); return (b && b.campos) ? b : null; }
+  catch(_){ return null; }
+}
+
+/* Al abrir: si quedó un árbol a medias, se ofrece — nunca se rellena solo,
+   porque el asesor pudo haberse movido a otro árbol. */
+function ofrecerBorrador(){
+  const b=leerBorrador();
+  if (!b) return;
+  const min=Math.round((Date.now()-b.ts)/60000);
+  const cuando = min<1 ? 'hace menos de un minuto' : min<60 ? 'hace '+min+' min' : 'hace '+Math.round(min/60)+' h';
+  const piezas=[];
+  if (b.gps) piezas.push('GPS bloqueado ±'+(b.gps.effAcc||b.gps.acc).toFixed(2)+' m');
+  if (b.campos.especie) piezas.push(b.campos.especie.split('(')[0].trim());
+  if (b.campos.arbolNum) piezas.push('núm. '+b.campos.arbolNum);
+  const fotos=(b.foto1?1:0)+(b.foto2?1:0);
+  if (fotos) piezas.push(fotos+(fotos===1?' foto':' fotos'));
+  $('borradorDetalle').textContent = (piezas.length ? piezas.join(' · ') : 'Captura sin terminar')+
+    ' · guardado '+cuando+'.'+(b.fotosOmitidas?' Las fotos no cupieron: hay que repetirlas.':'');
+  $('borradorAviso').classList.add('borrador--show');
+  /* Al recargar, el navegador devuelve el desplazamiento donde estaba y el aviso
+     queda debajo del encabezado fijo: hay que subir para que se vea. */
+  setTimeout(() => window.scrollTo({top:0, behavior:'auto'}), 60);
+}
+
+function restaurarBorrador(){
+  const b=leerBorrador();
+  if (!b){ descartarBorrador(); return; }
+  CAMPOS_BORRADOR.forEach(id => { const el=$(id); if (el && b.campos[id]!==undefined) el.value=b.campos[id]; });
+  if (b.campos.especie) selectEspecie(b.campos.especie);
+  PROTO_PASOS.forEach(p => { $('proto'+p).checked=!!(b.proto&&b.proto[p]); });
+  pintarProtocolo();
+  [1,2].forEach(n => {
+    const dato = n===1 ? b.foto1 : b.foto2;
+    if (!dato) return;
+    if (n===1) foto1=dato; else foto2=dato;
+    const prev=$('prev'+n);
+    prev.src=dato; prev.style.display='block';
+    $('slot'+n).classList.add('foto-slot--taken');
+  });
+  if (b.gps){
+    /* Se reusa lockGPS para que el botón y los avisos queden exactamente igual */
+    const btn=$('btnLock');
+    btn._bLat=b.gps.lat; btn._bLon=b.gps.lon; btn._bAcc=b.gps.acc; btn._effAcc=b.gps.effAcc;
+    lockGPS();
+  }
+  $('borradorAviso').classList.remove('borrador--show');
+  actualizarID(); pintarCondicionSugerida(); actualizarValidacion();
+  toast('🌱 Árbol recuperado. Revisa el GPS antes de guardar.','ok');
+}
+
+function descartarBorrador(){
+  $('borradorAviso').classList.remove('borrador--show');
+  limpiarBorrador();
+}
+
+/* ════════════════════════════════════════════════════════════
+   PAPELERA — borrar un registro suelto sin perderlo de inmediato
+   ════════════════════════════════════════════════════════════ */
+function guardarPapelera(){
+  try { localStorage.setItem(PAPELERA_KEY, JSON.stringify(papelera)); }
+  catch(e){
+    /* Si no cabe, la papelera cede el espacio: los registros vivos mandan */
+    papelera = papelera.map(r => ({...r, foto1:null, foto2:null, fotosPurgadas:true}));
+    try { localStorage.setItem(PAPELERA_KEY, JSON.stringify(papelera)); } catch(_){ papelera=[]; }
+  }
+}
+/* Al abrir la app se tiran los que ya pasaron de PAPELERA_DIAS */
+function purgarPapelera(){
+  const limite=Date.now()-PAPELERA_DIAS*86400000;
+  const antes=papelera.length;
+  papelera=papelera.filter(r => (r.borradoTs||0) > limite);
+  if (papelera.length!==antes) guardarPapelera();
+}
+
+let ultimoBorrado=null, undoTimer=null;
+
+function eliminarRegistro(id){
+  const i=registros.findIndex(r => r.id===id);
+  if (i<0) return;
+  const r=registros[i];
+  const especie=(r.especie||'sin especie').split('(')[0].trim();
+  if (!confirm('¿Eliminar este registro?\n\n'+r.id+'\n'+especie+'\n'+(r.parque||'')+
+               '\n\nQueda en la papelera '+PAPELERA_DIAS+' días por si fue un error.')) return;
+  registros.splice(i,1);
+  papelera.push({...r, borradoTs:Date.now()});
+  try { localStorage.setItem('r11k_v2', JSON.stringify(registros)); }
+  catch(e){
+    /* Sin este aviso el registro desaparecía de la pantalla y volvía al reabrir la app */
+    registros.splice(i,0,r);
+    papelera.pop();
+    renderRegistros();
+    toast('❌ No se pudo guardar el borrado: almacenamiento lleno. Exporta el CSV.','err');
+    return;
+  }
+  guardarPapelera();
+  ultimoBorrado=r.id;
+  renderRegistros();
+  vibrate([20,40,20]);
+  mostrarUndo(r.id);
+}
+
+function mostrarUndo(id){
+  const bar=$('undoBar');
+  $('undoTxt').textContent='Eliminado '+id;
+  bar.classList.add('undo--show');
+  clearTimeout(undoTimer);
+  undoTimer=setTimeout(()=>{ bar.classList.remove('undo--show'); ultimoBorrado=null; },8000);
+}
+function deshacerBorrado(){ if (ultimoBorrado) restaurarRegistro(ultimoBorrado); }
+
+function restaurarRegistro(id){
+  const i=papelera.findIndex(r => r.id===id);
+  if (i<0) return;
+  const r=papelera.splice(i,1)[0];
+  delete r.borradoTs;
+  registros.push(r);
+  registros.sort((a,b) => (a.ts||'').localeCompare(b.ts||''));
+  try { localStorage.setItem('r11k_v2', JSON.stringify(registros)); }
+  catch(e){
+    /* Se deshace quitando ESTE registro por su ID: después de ordenar, el último
+       de la lista casi nunca es el que se acaba de restaurar. */
+    const j = registros.findIndex(x => x === r);
+    if (j >= 0) registros.splice(j, 1);
+    papelera.push({...r, borradoTs:Date.now()});
+    guardarPapelera();
+    renderRegistros();
+    toast('❌ Sin espacio para restaurar. Exporta el CSV y vuelve a intentarlo.','err');
+    return;
+  }
+  guardarPapelera();
+  $('undoBar').classList.remove('undo--show');
+  ultimoBorrado=null;
+  renderRegistros();
+  toast('↩️ Registro restaurado: '+id,'ok');
+}
+
+function vaciarPapelera(){
+  if (!papelera.length) return;
+  if (!confirm('¿Vaciar la papelera? Se eliminan '+papelera.length+' registro(s) de forma definitiva.')) return;
+  papelera=[]; guardarPapelera(); renderRegistros();
+  toast('🗑 Papelera vacía','ok');
+}
+function togglePapelera(){ $('papeleraBody').classList.toggle('papelera__body--show'); }
+
+function renderPapelera(){
+  const box=$('papeleraBox');
+  if (!papelera.length){ box.style.display='none'; return; }
+  box.style.display='block';
+  $('papeleraHead').innerHTML='<span>🗑 Papelera ('+papelera.length+')</span><span>Se vacía sola a los '+PAPELERA_DIAS+' días</span>';
+  $('papeleraList').innerHTML = [...papelera].reverse().map(r => {
+    const dias=Math.max(0, PAPELERA_DIAS-Math.floor((Date.now()-(r.borradoTs||0))/86400000));
+    return '<div class="pap-item"><div><b>'+r.id+'</b>'+
+      (r.especie||'—').split('(')[0].trim()+' · '+(r.parque||'—')+
+      ' · quedan '+dias+' día(s)</div>'+
+      '<div class="pap-btns">'+
+      '<button type="button" class="pap-rec" onclick="recapturarRegistro(\''+r.id+'\')">Recapturar</button>'+
+      '<button type="button" onclick="restaurarRegistro(\''+r.id+'\')">Restaurar</button></div></div>';
+  }).join('');
+}
+
+/* Aviso de número repetido.
+   Dos situaciones distintas que no se deben tratar igual:
+   · el ID ya existe en un árbol vivo  → duplicado de verdad, hay que avisar.
+   · el ID solo existe en la papelera  → es una recaptura después de borrar por error,
+     que es justo lo que se quiere poder hacer: el número correcto ES ese. */
+function revisarDuplicado(){
+  const w=$('dupWarn'); if (!w) return;
+  const id=$('arbolID').textContent;
+  w.classList.remove('dup-warn--ok');
+  if (!$('arbolNum').value){ w.classList.remove('dup-warn--show'); return; }
+  if (registros.some(r => r.id===id)){
+    w.textContent='⚠️ Ya existe un árbol vivo con este ID. Si es un duplicado, borra uno de los dos desde Registros.';
+    w.classList.add('dup-warn--show');
+    return;
+  }
+  const b=papelera.find(r => r.id===id);
+  if (b){
+    w.textContent='↩️ Estás recapturando el árbol que borraste'+
+      (b.especie ? ' ('+b.especie.split('(')[0].trim()+')' : '')+'. El número es correcto.';
+    w.classList.add('dup-warn--show','dup-warn--ok');
+    return;
+  }
+  w.classList.remove('dup-warn--show');
+}
+
+/* "Recapturar": se borró por un error de captura y hay que levantarlo de nuevo.
+   Rellena solo lo administrativo (parque, número, quién registra). Deja vacíos
+   GPS, especie y fotos a propósito: son los datos que quedaron quemados dentro
+   de la imagen vieja y tienen que tomarse otra vez en el árbol. */
+function recapturarRegistro(id){
+  const r=papelera.find(x => x.id===id);
+  if (!r) return;
+  if (hayCaptura() && !confirm('Hay un árbol a medio capturar. ¿Reemplazarlo con los datos de '+id+'?')) return;
+  ['idParque','asesor','parque','colonia','mes','ejecutor','registrante'].forEach(k => {
+    if (r[k]!==undefined && $(k)) $(k).value=r[k];
+  });
+  if ($('arbolNum')) $('arbolNum').value = r.num || '';
+  $('obs').value = r.obs || '';
+  $('dap').value = r.dap ?? '2.5';
+  $('altura').value = r.altura ?? '1.5';
+  $('copa').value = r.copa ?? '95';
+  $('suelo').value = r.suelo || '';
+  PROTO_PASOS.forEach(p => { $('proto'+p).checked = !!r['proto'+p]; });
+  pintarProtocolo();
+  /* Lo que sí hay que volver a levantar en el árbol */
+  gpsLocked=null; readings=[]; unlockGPS();
+  $('especie').value=''; $('nombreCientifico').value=''; $('itreeInfo').style.display='none';
+  document.querySelectorAll('.especie-card').forEach(c => c.classList.remove('is-active'));
+  foto1=null; foto2=null;
+  [1,2].forEach(n => {
+    const prev=$('prev'+n);
+    prev.removeAttribute('src'); prev.style.display='none';
+    $('slot'+n).classList.remove('foto-slot--taken');
+    resetFotoInput(n);
+  });
+  switchTab('registrar');
+  window.scrollTo({top:0,behavior:'smooth'});
+  actualizarID(); pintarCondicionSugerida(); actualizarValidacion(); anotarBorrador();
+  toast('📋 Datos del parque listos. Falta GPS, especie y las 2 fotos.','ok');
+}
+
 function renderRegistros(){
+  renderPapelera();
   const list=$('regList'), total=registros.length;
   $('navBadge').textContent=total;
   $('kpiTotal').textContent=total;
@@ -1311,7 +1640,7 @@ function renderRegistros(){
   }
   list.innerHTML = [...filtrados].reverse().map(r => `
     <article class="reg-card">
-      <header class="reg-card__head"><span class="reg-card__id">${r.id}</span><span class="reg-card__badge">${r.mes||'—'} · ${r.ejecutor||'—'}</span></header>
+      <header class="reg-card__head"><span class="reg-card__id">${r.id}</span><span class="reg-card__badge">${r.mes||'—'} · ${r.ejecutor||'—'}</span><button type="button" class="reg-card__del" title="Eliminar este registro" aria-label="Eliminar ${r.id}" onclick="eliminarRegistro('${r.id}')">🗑</button></header>
       <div class="reg-card__body">
         <div class="reg-row"><span class="reg-row__k">Especie</span><span class="reg-row__v">${(r.especie||'').split('(')[0].trim()}</span></div>
         <div class="reg-row"><span class="reg-row__k">Científico</span><span class="reg-row__v" style="font-style:italic">${r.nombreCientifico||'—'}</span></div>
@@ -1342,18 +1671,21 @@ function protoResumen(r){
   return { completo: pasos.length>0 && hechos===pasos.length, texto: hechos+'/'+pasos.length };
 }
 function siNoNA(v){ return v===undefined ? 'N/A' : (v?'Sí':'No'); }
+/* Un texto entre comillas que contiene comillas debe duplicarlas, o el archivo
+   se recorre de columna al abrirlo. Aplica a observaciones, parque y colonia. */
+function csvTxt(v){ return '"' + String(v === undefined || v === null ? '' : v).replace(/"/g, '""') + '"'; }
 function csvPlantacion(){
   const cols=['ID_Arbol','Num','ID_Parque','Asesor','Mes','Ejecutor','Parque','Colonia','Nombre_Comun','Nombre_Cientifico','Codigo_iTree','iTree_En_BD','iTree_Alternativa','Registrado_Por','Latitud','Longitud','Precision_Efectiva_m','Precision_Raw_m','DAP_cm','Altura_m','Suelo_Circundante','Copa_Viva_pct','Condicion_General','Proto_Hoyo','Proto_Riego_Asentamiento','Estado','Fecha_Hora','Observaciones','Foto','Proto_Cama_Tierra_Fertilizada','Proto_Tutor_Crecimiento','Foto_Cenital'];
   const rows=registros.map(r=>[
     r.id,r.num,r.idParque||'',r.asesor||'',r.mes||'',r.ejecutor,
-    '"'+r.parque+'"','"'+(r.colonia||'')+'"','"'+(r.especie||'').split('(')[0].trim()+'"',
-    '"'+(r.nombreCientifico||'')+'"',r.itreeCode||'',r.itreeInBD||'','"'+(r.itreeAlt||'')+'"',
-    '"'+(r.registrante||'')+'"',
+    csvTxt(r.parque),csvTxt(r.colonia),csvTxt((r.especie||'').split('(')[0].trim()),
+    csvTxt(r.nombreCientifico),r.itreeCode||'',r.itreeInBD||'',csvTxt(r.itreeAlt),
+    csvTxt(r.registrante),
     r.lat.toFixed(7),r.lon.toFixed(7),(r.effAcc||r.acc).toFixed(2),r.acc.toFixed(1),
     (r.dap||'').toString(),(r.altura||'').toString(),
-    '"'+(r.suelo||'')+'"', r.copa!==undefined?r.copa:'', r.condicion||'',
+    csvTxt(r.suelo), r.copa!==undefined?r.copa:'', r.condicion||'',
     r.protoHoyo?'Sí':'No', r.protoRiego?'Sí':'No',
-    r.estado, '"'+(r.fecha||'')+'"', '"'+(r.obs||'')+'"',
+    r.estado, csvTxt(r.fecha), csvTxt(r.obs),
     r.foto1?r.id+'_finalizado.jpg':'',
     siNoNA(r.protoCama), siNoNA(r.protoTutor),
     r.foto2?r.id+'_cenital.jpg':''
@@ -1570,8 +1902,20 @@ async function compartirMonitoreo(){
 
 function limpiarRegistros(){
   if (!registros.length) return;
-  if (!confirm('¿Borrar '+registros.length+' registros? Exporta el CSV primero.')) return;
-  registros=[]; localStorage.removeItem('r11k_v2'); renderRegistros();
+  /* La papelera se menciona a propósito: son registros que NO van en el CSV,
+     así que el asesor debe saber que siguen ahí antes de limpiar. */
+  const avisoPap = papelera.length
+    ? '\n\nQuedan '+papelera.length+' registro(s) en la papelera. No se borran, pero sueltan sus fotos para liberar memoria.'
+    : '';
+  if (!confirm('¿Borrar '+registros.length+' registros? Exporta el CSV primero.'+avisoPap)) return;
+  registros=[]; localStorage.removeItem('r11k_v2');
+  /* Limpiar es lo que hace el asesor para liberar memoria. Las fotos de la
+     papelera son lo que pesa; los datos se conservan hasta cumplir los días. */
+  if (papelera.length){
+    papelera = papelera.map(r => ({...r, foto1:null, foto2:null, fotosPurgadas:true}));
+    guardarPapelera();
+  }
+  renderRegistros();
   toast('Registros eliminados','ok');
 }
 /* ======================= MODO MONITOREO ======================= */
@@ -2198,8 +2542,8 @@ function csvMonitoreo(){
   const nombres = nombresFotosMonitoreo();
   const cols=['ID_Monitoreo','ID_Arbol','Fecha_Revision','Estado','DAP_Actual_cm','Foto_Verificacion','Revisado_Por','Observaciones','Mes_Revision'];
   const rows=monitoreoRegistros.map(r=>[
-    r.idMonitoreo, r.idArbol, '"'+(r.fecha||'')+'"', r.estado, (r.dap||'').toString(),
-    r.foto?nombres[r.idMonitoreo]:'', '"'+r.revisor+'"', '"'+(r.obs||'')+'"', r.mes||''
+    r.idMonitoreo, r.idArbol, csvTxt(r.fecha), r.estado, (r.dap||'').toString(),
+    r.foto?nombres[r.idMonitoreo]:'', csvTxt(r.revisor), csvTxt(r.obs), r.mes||''
   ].join(','));
   return [cols.join(','),...rows].join('\n');
 }
@@ -2236,8 +2580,9 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!habiaControlador || actualizacionPendiente) return;
     actualizacionPendiente = true;
-    const sinCaptura = !$('especie').value && !foto1 && !foto2 && !$('arbolNum').value;
-    if (sinCaptura) location.reload();
+    /* hayCaptura() también mira el GPS bloqueado y el protocolo: antes la app se
+       recargaba encima de un asesor que ya había bloqueado coordenadas. */
+    if (!hayCaptura()) location.reload();
     else toast('🔄 Hay una versión nueva: se aplicará al guardar este árbol','ok');
   });
   window.addEventListener('load', () => {

@@ -27,8 +27,12 @@
    v20 (23-sep-2026): borrador automático del árbol en captura, papelera de 7 días con Deshacer y
    Recapturar, y aviso de ID repetido. Correcciones: la restauración ya no puede tirar otro registro
    cuando falta espacio, el borrado avisa si no se pudo guardar, "Limpiar" libera las fotos de la
-   papelera y el CSV escapa las comillas dentro de los textos. */
-const CACHE_VERSION = 'apa-2026-09-23-v20';
+   papelera y el CSV escapa las comillas dentro de los textos.
+   v21 (23-sep-2026): el número consecutivo del árbol solo admite enteros del 1 en adelante.
+   Ya no pasan 0, 01, .1 ni 1.5: el campo se normaliza en cada tecla y el guardado lo exige.
+   v22 (23-sep-2026): la tarjeta de la Amapa muestra el follaje en lugar de la floración, que es como
+   llega el plantón a campo. */
+const CACHE_VERSION = 'apa-2026-09-23-v22';
 const CORE = [
   './',
   './index.html',

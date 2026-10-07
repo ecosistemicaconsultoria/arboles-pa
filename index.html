@@ -1255,7 +1255,7 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
     <div class="acerca__cab"><img class="acerca__logo" id="acercaLogo" alt="Parques Alegres"><div><h2 class="hoja__tit" id="acercaTit" style="margin:0">Árboles PA</h2><div class="acerca__sub">Registro de campo · Cobertura Vegetal 2026</div></div></div>
     <p class="acerca__p">Herramienta de campo para registrar cada árbol que se planta en los parques de Culiacán, con evidencia verificable: ubicación GPS de ±1 m, especie, medidas, protocolo de plantación y 2 fotos con el ID del árbol grabado dentro.</p>
     <ul class="acerca__lista">
-      <li><b>Parques Alegres I.A.P.</b>, institución de <b>Fundación GC1</b> · iniciativa Cobertura Vegetal 2026</li>
+      <li><b>Parques Alegres I.A.P. y Fundación GC1</b> - Iniciativa Cobertura Vegetal 2026</li>
       <li><b>Ecosistémica – Consultoría Ambiental Integral</b> · diseño y desarrollo</li>
     </ul>
     <div class="acerca__datos">
@@ -1291,7 +1291,7 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
     <div class="guia__ico" id="guiaIco" aria-hidden="true"></div>
     <h2 class="guia__tit" id="guiaTit"></h2>
     <p class="guia__txt" id="guiaTxt"></p>
-    <p class="guia__marca" id="guiaMarca" hidden><b>Parques Alegres I.A.P.</b><span>Grupo Fundación GC1</span><span>Desarrollo: Ecosistémica – Consultoría Ambiental Integral</span></p>
+    <p class="guia__marca" id="guiaMarca" hidden><b>Parques Alegres I.A.P. y Fundación GC1</b><span>Iniciativa Cobertura Vegetal 2026</span><span>Desarrollo: Ecosistémica – Consultoría Ambiental Integral</span></p>
     <div class="guia__puntos" id="guiaPuntos" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <button type="button" class="btn-compartir" id="guiaSig" onclick="guiaSiguiente()">Siguiente</button>
     <button type="button" class="guia__saltar" id="guiaDemo" hidden onclick="cerrarGuia(); entrarDemo()">Ver una demostración con datos de ejemplo</button>
@@ -2298,6 +2298,19 @@ function aplicarCadena(groupOk){
     /* v39: el aviso solo en la siguiente sección; repetirlo en todas parecía pantalla rota */
     if (msg) msg.style.visibility = (bloqueada && i===idxActual+1) ? 'visible' : 'hidden';
   });
+  /* v39-3: el protocolo es opcional (nunca es «la sección actual»), pero se llena después de
+     las mediciones: antes quedaba abierto entre secciones bloqueadas y se podía llenar fuera de orden. */
+  const proto=$('sec-proto');
+  if (proto){
+    const bloq = idxActual <= SECCIONES_CADENA.indexOf('itree');
+    if (proto.classList.contains('section--locked')!==bloq){
+      proto.classList.toggle('section--locked', bloq);
+      const body=proto.querySelector('.section__body');
+      if (bloq) body.setAttribute('inert',''); else body.removeAttribute('inert');
+    }
+    const msg=proto.querySelector('.section__lock-msg');
+    if (msg){ if (bloq) msg.textContent='🔒 Primero completa «'+nombreActual+'» · toca aquí'; msg.style.visibility = (bloq && actual==='itree') ? 'visible' : 'hidden'; }
+  }
 }
 function irAPendiente(){
   const actual = seccionActual();

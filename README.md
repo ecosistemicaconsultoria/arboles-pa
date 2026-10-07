@@ -1,6 +1,6 @@
 # Árboles PA · Registro de Campo
 
-Aplicación web para el registro en campo de la plantación urbana de árboles de la iniciativa **Cobertura Vegetal 2026** de **Parques Alegres I.A.P.** en Culiacán, Sinaloa.
+Aplicación web para el registro en campo de la plantación urbana de árboles de **Parques Alegres I.A.P. y Fundación GC1 - Iniciativa Cobertura Vegetal 2026**, en Culiacán, Sinaloa.
 
 **Abrir la app:** https://ecosistemicaconsultoria.github.io/arboles-pa/
 
@@ -12,10 +12,10 @@ Desarrollada por **Ecosistémica – Consultoría Ambiental Integral**.
 
 - **Registro de cada árbol plantado:** parque (base de 791 parques), especie (catálogo de 14 especies con foto, seña de la hoja y código i-Tree Eco), ubicación GPS promediada, mediciones (DAP, altura, copa viva, condición), protocolo de plantación y dos fotografías de evidencia.
 - **Funciona sin internet.** Después de abrirla una vez, la app trabaja completa sin señal de datos. Los registros y las fotos se guardan en el propio celular.
-- **Envío de la jornada:** un botón arma un solo archivo .zip con el CSV (compatible con i-Tree Eco) y las fotos, listo para enviarse por correo a Ecosistémica. Cada foto lleva el ID del árbol grabado en la imagen.
+- **Envío directo a Ecosistémica:** con señal, un botón envía cada árbol con sus fotos a la hoja maestra del proyecto. Si se corta la señal, lo pendiente se envía solo al recuperarla. Como respaldo, la jornada también puede enviarse en un archivo .zip por correo. Cada foto lleva el ID del árbol grabado en la imagen.
 - **Resumen de impacto:** avance contra la meta de la campaña, especies, parques y colonias, calidad de la evidencia y sobrevivencia.
 - **Modo demostración:** desde el botón Aa se puede recorrer la app con datos de ejemplo y ubicación simulada, sin tocar los datos reales.
-- **Monitoreo de sobrevivencia:** localiza en campo los árboles de la muestra, muestra su foto de referencia y registra la revisita.
+- **Monitoreo de sobrevivencia:** localiza en campo los árboles de la muestra, muestra su foto de referencia, registra la revisita y la envía directo a Ecosistémica.
 
 ## Instalación en el celular
 
@@ -36,11 +36,11 @@ La app se actualiza sola cuando hay una versión nueva. Si un celular se queda e
 
 ## Privacidad
 
-La app no tiene servidor ni base de datos en línea. La información capturada permanece en el celular de quien registra hasta que la comparte. No se recopilan datos personales.
+La información capturada se guarda en el celular de quien registra hasta que la envía. Al enviarla, los registros y las fotos llegan a la hoja de cálculo y a la carpeta de Google Drive del proyecto, administradas por Ecosistémica; solo se registra el nombre de quien capturó o revisó. No se recopilan otros datos personales.
 
 ## Versión
 
-**v39 · octubre de 2026.** Incluye almacenamiento seguro de fotografías, captura guiada paso a paso, GPS con indicador de progreso hacia ±1 m, resumen de impacto, envío de la jornada en un solo archivo, modo de alto contraste para exteriores, modo demostración, actualización automática y revisión de seguridad.
+**v41 · octubre de 2026.** Envío directo de árboles y revisitas a la hoja maestra, GPS más confiable al caminar, identificadores únicos por celular, mejoras de accesibilidad (zoom y contraste) y monitoreo sin números repetidos. Incluye lo de v39: almacenamiento seguro de fotografías, captura guiada paso a paso, GPS con indicador de progreso hacia ±1 m, resumen de impacto, modo de alto contraste para exteriores, modo demostración y actualización automática.
 
 ## Créditos
 

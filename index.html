@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0F4514">
@@ -71,7 +71,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .app-bar{background:linear-gradient(135deg,var(--c-p-900) 0%,var(--c-p-700) 100%);color:var(--c-w);padding:var(--s-3) var(--s-4);position:sticky;top:0;z-index:100;box-shadow:var(--sh-2);display:flex;align-items:center;gap:var(--s-3);height:var(--header-h)}
 .app-bar__logo{width:36px;height:36px;border-radius:8px;background:#fff;padding:3px;object-fit:contain;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .app-bar__title{font-size:var(--fs-lg);font-weight:700;letter-spacing:.2px;line-height:1.15}
-.app-bar__sub{font-size:var(--fs-xs);color:#A8D5B0;margin-top:2px;font-weight:500}
+.app-bar__sub{font-size:var(--fs-xs);color:#D4ECD6;margin-top:2px;font-weight:500}
 .app-bar__txt{flex:1;min-width:0}
 .app-bar__sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
 .btn-fs{flex-shrink:0;display:flex;align-items:center;gap:6px;min-height:40px;padding:4px 12px;border-radius:var(--r-full);border:1.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.12);color:var(--c-w);font-weight:800;font-size:var(--fs-md);line-height:1}
@@ -80,7 +80,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .btn-fs__dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35)}
 .btn-fs__dot.is-on{background:var(--c-w)}
 .tabs{display:flex;background:var(--c-p-800);position:sticky;top:var(--header-h);z-index:99;height:var(--tabs-h)}
-.tab-btn{flex:1;padding:0 var(--s-3);border:none;background:none;color:#A8D5B0;font-size:var(--fs-sm);font-weight:600;display:flex;align-items:center;justify-content:center;gap:var(--s-2);border-bottom:3px solid transparent;transition:all var(--t-base) var(--easing)}
+.tab-btn{flex:1;padding:0 var(--s-3);border:none;background:none;color:#D4ECD6;font-size:var(--fs-sm);font-weight:600;display:flex;align-items:center;justify-content:center;gap:var(--s-2);border-bottom:3px solid transparent;transition:all var(--t-base) var(--easing)}
 .tab-btn[aria-selected="true"]{color:var(--c-w);border-bottom-color:var(--c-w)}
 .tab-btn__badge{background:rgba(255,255,255,.20);color:var(--c-w);font-size:var(--fs-xs);font-weight:700;padding:1px 8px;border-radius:var(--r-full);min-width:22px}
 .tab-btn[aria-selected="true"] .tab-btn__badge{background:var(--c-w);color:var(--c-p-700)}
@@ -212,7 +212,7 @@ input[readonly]{background:var(--c-n-100);color:var(--c-n-700);cursor:not-allowe
 .pending{margin:var(--s-3) var(--s-4);background:var(--c-w);border-radius:var(--r-lg);box-shadow:var(--sh-2);overflow:hidden}
 .pending__head{background:#FFF3E0;color:var(--c-warn);padding:var(--s-3) var(--s-4);font-size:var(--fs-md);font-weight:700;display:flex;align-items:center;gap:var(--s-2)}
 .pending__list{padding:var(--s-3)}
-.pending__item{display:flex;align-items:center;gap:var(--s-2);font-size:var(--fs-sm);color:var(--c-n-700);padding:var(--s-1) var(--s-2);border-radius:var(--r-sm);cursor:pointer;transition:background var(--t-fast)}
+.pending__item{width:100%;border:0;background:none;font:inherit;text-align:left;min-height:40px;display:flex;align-items:center;gap:var(--s-2);font-size:var(--fs-sm);color:var(--c-n-700);padding:var(--s-1) var(--s-2);border-radius:var(--r-sm);cursor:pointer;transition:background var(--t-fast)}
 .pending__item:hover{background:var(--c-n-100)}
 .pending__item::before{content:"○";color:var(--c-warn);font-size:var(--fs-md);font-weight:700}
 .pending__ok{display:none;padding:var(--s-4);text-align:center;font-size:var(--fs-md);color:var(--c-ok);font-weight:700}
@@ -522,6 +522,14 @@ html[data-fs="2"] .save-bar .btn-save{max-width:none;width:100%}
 .envio-bar__nota{text-align:center;font-size:var(--fs-xs);color:var(--c-n-600);margin-top:4px}
 .btn-compartir--sec{background:var(--c-w);color:var(--c-p-700);border:1.5px solid var(--c-p-700);box-shadow:none}
 @media(min-width:640px){.reg-dia{max-width:600px;margin-left:auto;margin-right:auto}}
+/* ── v40 · HU-29 envío directo ── */
+.mon-enviar{width:100%;margin-bottom:10px}
+.mon-card__env{display:inline-block;font-size:var(--fs-2xs);font-weight:700;color:var(--c-ok);margin-left:6px}
+.envio-bar__alt{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.dir-txt{font-size:var(--fs-md);font-weight:700;margin:0 0 8px}
+.dir-barra{height:10px;background:var(--c-n-100);border-radius:5px;overflow:hidden;margin-bottom:10px}
+.dir-barra>div{height:100%;width:0;background:var(--c-p-600);transition:width .3s}
+.dir-nota{font-size:var(--fs-sm);color:var(--c-n-600);line-height:1.4;margin:0 0 var(--s-3);white-space:pre-line;overflow-wrap:anywhere}
 /* ── v38 · envío de la jornada en .zip ── */
 .zip-arch{display:flex;flex-direction:column;gap:2px;background:var(--c-p-50);border:1.5px solid var(--c-p-100);border-radius:var(--r-md);padding:10px 12px;margin-bottom:var(--s-2)}
 .zip-arch b{font-family:var(--ff-mono);font-size:var(--fs-sm);word-break:break-all;color:var(--c-p-800)}
@@ -1060,7 +1068,7 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
         <div class="foto-slot" id="slot2"><img class="foto-slot__img" id="prev2" alt="Árbol finalizado desde arriba"><span class="foto-slot__icon"><svg class="ic" aria-hidden="true"><use href="#i-arrowdown"/></svg></span><span class="foto-slot__label">2 · Desde arriba<br>Cepa, tutor y riego vistos en vertical</span><span class="foto-slot__check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><input type="file" accept="image/*" capture="environment" id="fi2" onchange="capturarFoto(2,this)"></div>
       </div>
       <p class="foto-nota"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg> Foto 1: de frente, árbol completo. Foto 2: con el celular sobre el árbol, apuntando hacia abajo.</p>
-      <p class="foto-nota"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> Para enviarlas usa <strong>Registros → Compartir jornada</strong>. Si las adjuntas desde la galería pierden el ID en el nombre.</p>
+      <p class="foto-nota"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> Para enviarlas usa <strong>Registros → Enviar a Ecosistémica</strong>: van solas con el ID de cada árbol. No las adjuntes desde la galería: ahí pierden el ID en el nombre.</p>
       <div class="field" style="margin-top:var(--s-3)"><label class="field__label" for="obs">Observaciones <span class="opt">opcional</span></label>
         <textarea id="obs" placeholder="Estado del árbol, condiciones del terreno, incidencias…"></textarea>
       </div>
@@ -1180,10 +1188,11 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
   <div class="section">
     <div class="section__head"><div class="section__head__title"><span aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-clipboard"/></svg></span> Revisitas de hoy</div><span class="section__head__status" id="monHoyCount">0</span></div>
     <div class="section__body">
+      <button type="button" class="btn-compartir mon-enviar" id="btnMonEnviar" onclick="enviarMonitoreoDirecto()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> <span id="monEnviarTxt">Enviar a Ecosistémica</span></button>
       <div class="reg-actions" style="margin-bottom:12px">
-        <button class="btn-action" onclick="exportCSVMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg> CSV Monitoreo</button>
+        <button class="btn-action btn-action--secondary" onclick="exportCSVMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg> CSV</button>
         <button class="btn-action btn-action--secondary" onclick="exportFotosMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg> Fotos</button>
-        <button class="btn-action btn-action--secondary" onclick="compartirMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> Compartir</button>
+        <button class="btn-action btn-action--secondary" onclick="compartirMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> Archivos sueltos</button>
         <button class="btn-action btn-action--danger" onclick="limpiarMonitoreo()"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg> Limpiar</button>
       </div>
       <div id="monListaHoy"></div>
@@ -1192,8 +1201,8 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
 </section>
 
 <div class="envio-bar" id="envioBar" data-hidden="true">
-  <button type="button" class="btn-compartir" id="btnEnvioBar" onclick="compartirJornada()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> <span id="envioBarTxt">Compartir jornada</span></button>
-  <div class="envio-bar__nota">Un solo .zip para ecosistemicaconsultoria@gmail.com</div>
+  <button type="button" class="btn-compartir" id="btnEnvioBar" onclick="enviarDirecto()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> <span id="envioBarTxt">Enviar a Ecosistémica</span></button>
+  <div class="envio-bar__nota">Se envía directo con señal · <button type="button" class="envio-bar__alt" onclick="compartirJornada()">o en .zip por Gmail</button></div>
 </div>
 <div class="save-bar" id="saveBar">
   <div class="save-bar__info">
@@ -1229,6 +1238,18 @@ html[data-sol="1"] .especie-card__name{background:rgba(0,0,0,.85)}
       <button type="button" class="confirma__sec" onclick="confirmaVerRegistro()">Ver registro</button>
       <button type="button" class="confirma__sec" onclick="confirmaEnviar()"><svg class="ic" aria-hidden="true"><use href="#i-share"/></svg> Enviar jornada</button>
     </div>
+  </div>
+</div>
+<div class="hoja" id="directo" hidden>
+  <div class="hoja__fondo" onclick="cerrarDirecto()"></div>
+  <div class="hoja__panel" role="dialog" aria-modal="true" aria-labelledby="dirTit">
+    <h2 class="hoja__tit" id="dirTit">Enviando a Ecosistémica</h2>
+    <p class="dir-txt" id="dirTxt" aria-live="polite">Preparando…</p>
+    <div class="dir-barra" role="progressbar" aria-labelledby="dirTxt"><div id="dirBarra"></div></div>
+    <p class="dir-nota" id="dirNota">No cierres la app hasta que termine. Si se corta la señal, lo que falte se envía solo al recuperarla.</p>
+    <button type="button" class="btn-compartir" id="dirOk" hidden onclick="cerrarDirecto()">Listo</button>
+    <button type="button" class="btn-compartir btn-compartir--sec" id="dirReintentar" hidden onclick="enviarDirecto()">Reintentar ahora</button>
+    <button type="button" class="hoja__link" onclick="cerrarDirecto(); compartirJornada()">⬇ Otra forma: .zip por Gmail</button>
   </div>
 </div>
 <div class="hoja" id="zipEnvio" hidden>
@@ -1456,7 +1477,9 @@ const PAPELERA_KEY='papelera_v1', PAPELERA_DIAS=7;
 let papelera = JSON.parse(localStorage.getItem(PAPELERA_KEY) || '[]');
 let deviceToken = localStorage.getItem('deviceToken');
 if (!deviceToken) {
-  deviceToken = Math.random().toString(16).slice(2,6).toUpperCase();
+  /* v41 · HU-37: 8 caracteres aleatorios (antes 4: con 30–40 celulares podían repetirse). Los celulares que ya tienen código lo conservan. */
+  try{ deviceToken = Array.from(crypto.getRandomValues(new Uint8Array(4)), x=>x.toString(16).padStart(2,'0')).join('').toUpperCase(); }
+  catch(_){ deviceToken = (Math.random().toString(16).slice(2,10)+'00000000').slice(0,8).toUpperCase(); }
   try { localStorage.setItem('deviceToken', deviceToken); } catch(_){}
 }
 let monitoreoRegistros = JSON.parse(localStorage.getItem('monitoreo_v1') || '[]');
@@ -1533,6 +1556,9 @@ window.addEventListener('load', () => {
   proponerMes();
   const le=localStorage.getItem('le'); if(le) $('ejecutor').value=le;
   const lp=localStorage.getItem('lp'); if(lp){ $('idParque').value=lp; buscarParque(); }
+  /* v41 · HU-37: la jornada en una escuela (modo manual) también se conserva entre sesiones */
+  try{ const lm=JSON.parse(localStorage.getItem('lmanual')||'null');
+    if (lm && !lp){ $('manualToggle').checked=true; toggleManualParque(); $('parque').value=lm.parque||''; $('colonia').value=lm.colonia||''; $('asesor').value=lm.asesor||'Sin asignar'; } }catch(_){}
   const lmr=localStorage.getItem('lmr'); if(lmr) $('monRevisor').value=lmr;
   renderRegistros();
   actualizarBaseMonitoreoStatus();
@@ -1980,21 +2006,23 @@ function toggleManualParque() {
   if (manual) {
     idInput.value=''; idInput.disabled = true;
     statusEl.style.display='none';
-    asesorInput.value='Sin asignar'; asesorInput.readOnly = false;
-    parqueInput.value=''; parqueInput.readOnly = false;
+    asesorInput.value=asesorInput.readOnly ? 'Sin asignar' : (asesorInput.value||'Sin asignar'); asesorInput.readOnly = false;
+    if (parqueInput.readOnly) parqueInput.value=''; parqueInput.readOnly = false;
     parqueInput.placeholder = 'Ej: Escuela Primaria Benito Juárez';
-    colInput.value=''; colInput.readOnly = false;
+    if (colInput.readOnly) colInput.value=''; colInput.readOnly = false;
     colInput.placeholder = 'Ej: Centro (opcional)';
     parqueInput.focus();
   } else {
     idInput.disabled = false;
     asesorInput.value=''; asesorInput.readOnly = true;
     parqueInput.value=''; parqueInput.readOnly = true;
-    parqueInput.placeholder = 'Se completa al ingresar el ID';
+    parqueInput.placeholder = 'Automático con el ID';
     colInput.value=''; colInput.readOnly = true;
-    colInput.placeholder = 'Se completa al ingresar el ID (opcional en modo manual)';
+    colInput.placeholder = 'Automático con el ID';
   }
   actualizarID();
+  /* v41 · HU-37: el número propuesto depende del prefijo (parque o MANUAL): se recalcula */
+  if (!$('arbolNum').value || numPropuesto){ numPropuesto=true; proponerNumero(); }
   if (typeof updateProgress === 'function') updateProgress();
 }
 function selectEspecie(val) {
@@ -2022,11 +2050,24 @@ function onEspecieChange() {
 
 }
 
+let gpsRetryTimer=null;
 function iniciarGPS() {
   if (!navigator.geolocation){ setGPSMsg('❌ GPS no disponible.','poor'); return; }
+  /* v41 · HU-36: nunca dos GPS a la vez (cada posición contaría doble y la precisión saldría optimista) */
+  clearTimeout(gpsRetryTimer); gpsRetryTimer=null;
+  try{ if (watchId!==null) navigator.geolocation.clearWatch(watchId); }catch(_){}
   setGPSMsg('⏳ Iniciando GPS… sal al exterior si estás adentro.','wait');
   watchId=navigator.geolocation.watchPosition(onGPS,onGPSErr,{enableHighAccuracy:true,maximumAge:0,timeout:20000});
 }
+/* v41 · HU-36: sin lecturas frescas el botón no puede fijar coordenadas viejas */
+function invalidarLecturasGPS(){
+  if (gpsLocked) return;
+  readings=[]; gpsAsentado=false;
+  const btn=$('btnLock'); btn.disabled=true; btn.className='btn-lock'; btn._bLat=null; btn._t=0;
+  btn.innerHTML='⏳ Acumulando (0/'+MIN_READS+')…';
+  reiniciarAnillo();
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) invalidarLecturasGPS(); });
 function toDMS(deg,isLat){
   const d=Math.floor(Math.abs(deg)), mf=(Math.abs(deg)-d)*60, m=Math.floor(mf), s=((mf-m)*60).toFixed(2);
   const dir=isLat?(deg>=0?'N':'S'):(deg>=0?'E':'O');
@@ -2035,8 +2076,29 @@ function toDMS(deg,isLat){
 function onGPS(pos) {
   if (!$('gpsPermiso').hidden) mostrarPermiso(false);
   const {latitude:lat,longitude:lon,accuracy:acc}=pos.coords;
+  /* v41 · HU-36: si la persona viene caminando, las lecturas del camino no cuentan.
+     Se reinicia la ventana cuando el celular reporta movimiento (> 0.5 m/s) o cuando la
+     lectura nueva cae lejos del promedio (más de 8 m y de 2.5 veces su propia precisión). */
+  if (readings.length>=3 && !gpsLocked){
+    let w=0,a=0,b=0; readings.forEach(r=>{ const k=1/(r.acc*r.acc); w+=k; a+=r.lat*k; b+=r.lon*k; });
+    const d=Math.hypot((lat-a/w)*111320, (lon-b/w)*111320*Math.cos(lat*Math.PI/180));
+    const vel=pos.coords.speed;
+    if ((vel!=null && vel>0.5) || d>Math.max(8, 2.5*acc)){ readings=[]; gpsAsentado=false; }
+  }
   readings.push({lat,lon,acc});
   if (readings.length>WIN) readings.shift();
+  /* HU-36 (sin velocidad del celular): la cola de la caminata deja una tendencia. Mientras la
+     mitad vieja de la ventana y la nueva difieran más de 2 m, se descarta la lectura más vieja. */
+  if (!gpsLocked){
+    const mediaR=rs=>{ let w=0,a=0,b=0; rs.forEach(r=>{ const k=1/(r.acc*r.acc); w+=k; a+=r.lat*k; b+=r.lon*k; }); return {lat:a/w, lon:b/w}; };
+    while (readings.length>=8){
+      const h=readings.length>>1, A=mediaR(readings.slice(0,h)), B=mediaR(readings.slice(h));
+      /* umbral relativo al ruido del celular: con señal ruidosa no se recorta de más */
+      const accMed=readings.reduce((t,r)=>t+r.acc,0)/readings.length, umbral=Math.max(1.5, 1.3*accMed*Math.sqrt(2/h));
+      if (Math.hypot((A.lat-B.lat)*111320,(A.lon-B.lon)*111320*Math.cos(A.lat*Math.PI/180)) <= umbral) break;
+      readings.shift();
+    }
+  }
   let wSum=0,wLat=0,wLon=0,wAccNum=0;
   readings.forEach(r => { const w=1/(r.acc*r.acc); wSum+=w; wLat+=r.lat*w; wLon+=r.lon*w; wAccNum+=r.acc*w; });
   const bLat=wLat/wSum, bLon=wLon/wSum;
@@ -2096,19 +2158,21 @@ function onGPS(pos) {
       bAcc>MAX_RAW ? '⏳ Señal débil (celular ±'+bAcc.toFixed(1)+' m)' :
       !estable ? (prec<=PREC_BLOQUEO ? '⏳ Asentando la ubicación…' : '⏳ Estabilizando…') : '⏳ Afinando ±'+p+' m (meta ±'+PREC_BLOQUEO+' m)';
   }
-  btn._bLat=bLat; btn._bLon=bLon; btn._bAcc=bAcc; btn._prec=prec;
+  btn._bLat=bLat; btn._bLon=bLon; btn._bAcc=bAcc; btn._prec=prec; btn._t=Date.now();
   if (!gpsLocked) pintarAnillo({prec, bAcc, n:readings.length, puede, estable, enCuliacan});
 }
 function onGPSErr(err){
   const m={1:'❌ Permiso denegado. Ajustes → Chrome → Ubicación → Permitir.',2:'❌ GPS no detectado. Sal al exterior.',3:'⏳ Tiempo agotado. Reintentando…'};
   setGPSMsg(m[err.code]||'Error GPS desconocido.','poor');
   if (err.code===1){ mostrarPermiso(true); return; }
-  if (err.code===2){ $('gpsHeadTxt').textContent='No se detecta el GPS'; gpsEstadoTxt=''; $('gpsSubTxt').textContent='Activa la ubicación del celular y sal al exterior.'; }
-  if (err.code===3){ navigator.geolocation.clearWatch(watchId); setTimeout(iniciarGPS,3000); }
+  if (err.code===2){ invalidarLecturasGPS(); $('gpsHeadTxt').textContent='No se detecta el GPS'; gpsEstadoTxt=''; $('gpsSubTxt').textContent='Activa la ubicación del celular y sal al exterior.'; }
+  if (err.code===3){ invalidarLecturasGPS(); navigator.geolocation.clearWatch(watchId); clearTimeout(gpsRetryTimer); gpsRetryTimer=setTimeout(iniciarGPS,3000); }
 }
-function lockGPS(){
+function lockGPS(desdeBorrador){
   const btn=$('btnLock');
   if (!btn._bLat) return;
+  /* v41 · HU-36: solo se fija con una lectura de hace menos de 5 s (el borrador trae la suya) */
+  if (desdeBorrador!==true && (!btn._t || Date.now()-btn._t>5000)){ invalidarLecturasGPS(); toast('Esperando lecturas nuevas del GPS…'); return; }
   gpsLocked={lat:btn._bLat,lon:btn._bLon,acc:btn._bAcc,prec:btn._prec!==undefined&&btn._prec!==null?btn._prec:precisionDe(btn._bAcc),metodo:'estimada'};
   btn.disabled=false; btn.className='btn-lock btn-lock--locked';
   btn.innerHTML='✅ Bloqueado ±'+fmtPrec(gpsLocked.prec)+' m';
@@ -2330,7 +2394,7 @@ function renderPendientes(okCount){
   if (okCount===TOTAL_FIELDS){ wrap.classList.add('pending--ok'); return; }
   wrap.classList.remove('pending--ok');
   const html=FIELDS.filter(f=>!valOf(f.id))
-    .map(f=>'<div class="pending__item" onclick="scrollToField(\''+f.id+'\')">'+f.label+'</div>').join('');
+    .map(f=>'<button type="button" class="pending__item" data-id="'+f.id+'" onclick="scrollToField(this.dataset.id)">'+esc(f.label)+'</button>').join('');
   $('pendingList').innerHTML=html;
 }
 function scrollToField(id, forzar){
@@ -2514,7 +2578,6 @@ function mostrarPermiso(on){
 }
 function reintentarGPS(){
   mostrarPermiso(false);
-  try{ if (watchId!==null) navigator.geolocation.clearWatch(watchId); }catch(_){}
   readings=[]; reiniciarAnillo();
   iniciarGPS();
 }
@@ -2563,6 +2626,9 @@ function cerrarConfirmacion(){
   $('confirma').hidden=true; confirmaAbierta=false;
   ['confF1','confF2'].forEach(id => $(id).removeAttribute('src'));
   window.scrollTo({top:0,behavior:'smooth'});
+  /* v41 · HU-39: el foco regresa a donde estaba (antes quedaba en la hoja oculta y el lector se perdía) */
+  if (focoPrevio && document.contains(focoPrevio) && focoPrevio.offsetParent!==null){ try{ focoPrevio.focus({preventScroll:true}); }catch(_){} }
+  else { try{ $('tb-reg').focus({preventScroll:true}); }catch(_){} }
   /* Se revisa al momento de recargar: «Enviar jornada» cierra esta hoja y enseguida arma el .zip */
   if (actualizacionPendiente) setTimeout(() => { if (!ocupadoEnOtraCosa() && !hayCaptura()) location.reload(); else $('versionBar').classList.add('undo--show'); }, 400);
 }
@@ -2573,7 +2639,7 @@ function confirmaVerRegistro(){
     if (card){ const b=card.querySelector('.reg-card__resumen'); if (b && b.getAttribute('aria-expanded')!=='true') toggleRegistro(b); card.scrollIntoView({behavior:'smooth',block:'center'}); }
   }, 80);
 }
-function confirmaEnviar(){ cerrarConfirmacion(); switchTab('registros'); compartirJornada(); }
+function confirmaEnviar(){ cerrarConfirmacion(); switchTab('registros'); enviarDirecto(); }
 document.addEventListener('keydown', e => { if (e.key==='Escape' && confirmaAbierta) cerrarConfirmacion(); });
 
 function guardarRegistro(){
@@ -2585,6 +2651,13 @@ function guardarRegistro(){
     return;
   }
   if (guardando) return;                 // v39: un segundo Enter o toque no crea otro árbol
+  /* v41 · HU-37: un ID repetido ya no se guarda en silencio */
+  { const id=$('arbolID').textContent, n=numArbol(), ult=leerUltimos()[prefijoID()]||0;
+    const enPapelera=papelera.some(r => r.id===id);
+    const aviso = registros.some(r => r.id===id) ? 'Ya existe un árbol guardado con el ID '+id+'.'
+      : (!enPapelera && n<=ult) ? 'El número '+n+' ya se usó en este parque en este celular (el último fue el '+ult+'). Puede ser un árbol ya enviado.'
+      : '';
+    if (aviso && !confirm(aviso+'\n\n¿Guardarlo de todos modos con este número?')){ $('arbolNum').focus(); return; } }
   guardando=true;
   const btn=$('btnSave');
   btn.disabled=true; btn.classList.add('btn-save--saving');
@@ -2624,7 +2697,7 @@ function guardarRegistro(){
       registros.pop();
       evBorrar([claveFoto(reg,1),claveFoto(reg,2)]);
       reactivarGuardar();
-      toast('❌ Memoria llena. Comparte la jornada y limpia los registros.','err');
+      toast('❌ Memoria llena. Envía la jornada a Ecosistémica y limpia los registros.','err');
       return;
     }
     if (guardado){
@@ -2633,6 +2706,7 @@ function guardarRegistro(){
       try{localStorage.setItem('ls',reg.mes);}catch(_){}
       try{localStorage.setItem('le',reg.ejecutor);}catch(_){}
       try{localStorage.setItem('lp',reg.idParque);}catch(_){}
+      try{ if ($('manualToggle').checked) localStorage.setItem('lmanual', JSON.stringify({parque:reg.parque, colonia:reg.colonia, asesor:reg.asesor})); else localStorage.removeItem('lmanual'); }catch(_){}
     }
     pedirPersistencia();
     renderRegistros();
@@ -2724,7 +2798,7 @@ function guardarBorrador(){
      algo con el aviso en pantalla lo borraba y «Recuperar» ya no tenía qué restaurar. */
   if ($('borradorAviso').classList.contains('borrador--show')) return;
   if (!hayCaptura()){ try{ localStorage.removeItem(BORRADOR_KEY); }catch(_){} return; }
-  const b={ ts:Date.now(), gps:gpsLocked, foto1:!!foto1&&fotoBorradorOk[1], foto2:!!foto2&&fotoBorradorOk[2],
+  const b={ ts:Date.now(), manual:$('manualToggle').checked, gps:gpsLocked, foto1:!!foto1&&fotoBorradorOk[1], foto2:!!foto2&&fotoBorradorOk[2],
              campos:{}, proto:{}, medOrigen:{...medOrigen} };
   CAMPOS_BORRADOR.forEach(id => { const el=$(id); if (el) b.campos[id]=el.value; });
   PROTO_PASOS.forEach(p => { b.proto[p]=$('proto'+p).checked; });
@@ -2772,6 +2846,8 @@ async function restaurarBorrador(){
   const b=leerBorrador();
   if (!b){ descartarBorrador(); return; }
   medOrigen = {...(b.medOrigen||{})};
+  /* v41 · HU-37: el modo manual va antes que los campos (si no, el parque quedaba en solo lectura) */
+  if (!!b.manual !== $('manualToggle').checked){ $('manualToggle').checked=!!b.manual; toggleManualParque(); }
   CAMPOS_BORRADOR.forEach(id => { const el=$(id); if (el && b.campos[id]!==undefined) el.value=b.campos[id]; });
   if (b.campos.especie) selectEspecie(b.campos.especie);
   PROTO_PASOS.forEach(p => { $('proto'+p).checked=!!(b.proto&&b.proto[p]); });
@@ -2792,7 +2868,7 @@ async function restaurarBorrador(){
     /* Se reusa lockGPS para que el botón y los avisos queden exactamente igual */
     const btn=$('btnLock');
     btn._bLat=b.gps.lat; btn._bLon=b.gps.lon; btn._bAcc=b.gps.acc; btn._prec=precDe(b.gps);
-    lockGPS();
+    lockGPS(true);
   }
   $('borradorAviso').classList.remove('borrador--show');
   numPropuesto=false; $('numHint').textContent='';
@@ -3050,7 +3126,7 @@ function pintarEnvio(){
   const total=registros.length, pend=sinEnviar().length;
   $('regLimpiarBox').style.display = total ? '' : 'none';
   if ($('envioBar')){
-    $('envioBarTxt').textContent = !total ? 'Compartir jornada' : pend ? 'Compartir jornada · '+pend+' sin enviar' : 'Compartir de nuevo (todo enviado)';
+    $('envioBarTxt').textContent = !total ? 'Enviar a Ecosistémica' : pend ? 'Enviar a Ecosistémica · '+pend+' sin enviar' : '✓ Todo enviado';
     $('btnEnvioBar').classList.toggle('btn-compartir--sec', total>0 && !pend);
     if ($('tab-registros').dataset.active==='true') $('envioBar').dataset.hidden = total ? 'false' : 'true';
   }
@@ -3210,7 +3286,7 @@ function nombreFotoZip(r, n){
   return base+(k>0?'_'+(k+1):'')+'.jpg';
 }
 function csvPlantacion(){
-  const cols=['ID_Arbol','Num','ID_Parque','Asesor','Mes','Ejecutor','Parque','Colonia','Nombre_Comun','Nombre_Cientifico','Codigo_iTree','iTree_En_BD','iTree_Alternativa','Registrado_Por','Latitud','Longitud','Precision_Estimada_m','Precision_Raw_m','DAP_cm','Altura_m','Suelo_Circundante','Copa_Viva_pct','Condicion_General','Proto_Hoyo','Proto_Riego_Asentamiento','Estado','Fecha_Hora','Observaciones','Foto','Proto_Cama_Tierra_Fertilizada','Proto_Tutor_Crecimiento','Foto_Cenital','Mediciones_Por_Opcion','Precision_Metodo'];
+  const cols=['ID_Arbol','Num','ID_Parque','Asesor','Mes','Ejecutor','Parque','Colonia','Nombre_Comun','Nombre_Cientifico','Codigo_iTree','iTree_En_BD','iTree_Alternativa','Registrado_Por','Latitud','Longitud','Precision_Estimada_m','Precision_Raw_m','DAP_cm','Altura_m','Suelo_Circundante','Copa_Viva_pct','Condicion_General','Proto_Hoyo','Proto_Riego_Asentamiento','Estado','Fecha_Hora','Observaciones','Foto','Proto_Cama_Tierra_Fertilizada','Proto_Tutor_Crecimiento','Foto_Cenital','Mediciones_Por_Opcion','Precision_Metodo','Fecha_ISO'];
   const rows=registros.map(r=>[
     csvTxt(r.id),r.num,csvTxt(r.idParque),csvTxt(r.asesor),csvTxt(r.mes),csvTxt(r.ejecutor),
     csvTxt(r.parque),csvTxt(r.colonia),csvTxt((r.especie||'').split('(')[0].trim()),
@@ -3225,7 +3301,8 @@ function csvPlantacion(){
     siNoNA(r.protoCama), siNoNA(r.protoTutor),
     r.foto2?csvTxt(nombreFotoZip(r,2)):'',
     csvTxt(medidasPorOpcion(r)),
-    r.precMetodo || 'celular'
+    r.precMetodo || 'celular',
+    r.ts || ''                      // v41 · HU-38: fecha y hora ISO para emparejar fotos en Monitoreo
   ].join(','));
   return [cols.join(','),...rows].join('\n');
 }
@@ -3429,6 +3506,169 @@ async function compartirArchivos(archivos, titulo){
   }
 }
 /* ════════════════════════════════════════════════════════════
+   v40 · HU-29 ENVÍO DIRECTO A ECOSISTÉMICA
+   Árbol por árbol a un Apps Script de la cuenta de Ecosistémica: guarda las fotos en
+   Drive y una fila en la hoja maestra. Cada árbol se marca «Enviado» cuando el servidor
+   lo confirma, así que un corte de señal solo deja pendiente lo que faltó; se reintenta
+   solo al recuperar señal o al volver a abrir la app. El servidor no duplica (UID).
+   La URL y la clave están en el código público: solo permiten ENVIAR, no leer datos.
+   ════════════════════════════════════════════════════════════ */
+const ENVIO_URL='https://script.google.com/macros/s/AKfycbz48WmyA8xeP3uNdW4Ys9q4r5cF5gLxo1q_ZBLLtNj9XQHEmruoo3_nNTp3NzbHekvN/exec';
+const ENVIO_CLAVE='bb829b2b5d6542e6b5f8';
+let directoEnCurso=false;
+function blobADataUrl(bytes){ return new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.onerror=()=>rej(fr.error); fr.readAsDataURL(new Blob([bytes],{type:'image/jpeg'})); }); }
+function numONada(v){ const n=parseFloat(v); return isNaN(n) ? '' : n; }
+function filaDirecto(r){
+  const t=new Date(r.ts||Date.now());
+  return { ID_Arbol:r.id, UID:uidDe(r), Fecha_ISO:r.ts||'', Fecha:t.toLocaleDateString('en-CA'), Mes:r.mes||'',
+    ID_Parque:r.idParque||'', Parque:r.parque||'', Colonia:r.colonia||'', Asesor:r.asesor||'', Brigada:r.registrante||'', Ejecutor:r.ejecutor||'',
+    Nombre_Comun:(r.especie||'').split('(')[0].trim(), Nombre_Cientifico:r.nombreCientifico||'', Codigo_iTree:r.itreeCode||'',
+    iTree_En_BD:r.itreeInBD||'', iTree_Alternativa:r.itreeAlt||'', Latitud:r.lat, Longitud:r.lon,
+    Precision_Estimada_m:precDe(r), Precision_Raw_m:numONada(r.acc), Precision_Metodo:r.precMetodo||'celular',
+    DAP_cm:numONada(r.dap), Altura_m:numONada(r.altura), Suelo_Circundante:r.suelo||'', Copa_Viva_pct:numONada(r.copa), Condicion_General:r.condicion||'',
+    Proto_Hoyo:r.protoHoyo?'Sí':'No', Proto_Cama:siNoNA(r.protoCama), Proto_Tutor:siNoNA(r.protoTutor), Proto_Riego:r.protoRiego?'Sí':'No',
+    Protocolo_Completo:(r.protoHoyo&&r.protoCama&&r.protoTutor&&r.protoRiego)?'Sí':'No',
+    Foto_Frente:r.foto1?nombreFotoZip(r,1):'', Foto_Cenital:r.foto2?nombreFotoZip(r,2):'',
+    Observaciones:r.obs||'', Mediciones_Por_Opcion:medidasPorOpcion(r), Origen:'APP' };
+}
+/* v40-1: los errores se distinguen (antes todo decía «se cortó la señal») y se guarda el detalle
+   para diagnosticar: red, conexión con el servidor o respuesta que no es del script (permisos). */
+let directoDetalle='';
+class ErrorEnvio extends Error { constructor(tipo, detalle){ super(detalle); this.tipo=tipo; } }
+async function postDirecto(cuerpo){
+  const ctl=new AbortController(), t=setTimeout(()=>ctl.abort(), 60000);
+  let resp;
+  try{
+    resp=await fetch(ENVIO_URL,{ method:'POST', body:JSON.stringify({ clave:ENVIO_CLAVE, dispositivo:deviceToken, version:APP_VERSION, ...cuerpo }),
+      headers:{'Content-Type':'text/plain;charset=utf-8'}, redirect:'follow', signal:ctl.signal });
+  }catch(e){
+    throw new ErrorEnvio(!navigator.onLine ? 'red' : e.name==='AbortError' ? 'tiempo' : 'conexion', (e.name||'')+': '+(e.message||''));
+  }finally{ clearTimeout(t); }
+  const txt=await resp.text().catch(()=> '');
+  try{ return JSON.parse(txt); }
+  catch(_){ throw new ErrorEnvio('respuesta', 'HTTP '+resp.status+' · '+txt.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,160)); }
+}
+async function probarServidor(){
+  try{ const r=await fetch(ENVIO_URL+'?t='+Date.now(),{cache:'no-store',redirect:'follow'}); const t=await r.text(); return 'GET '+r.status+' · '+t.slice(0,120); }
+  catch(e){ return 'GET falló · '+(e.name||'')+': '+(e.message||''); }
+}
+function pintarDirecto(txt, frac, nota){
+  $('dirTxt').textContent=txt; $('dirBarra').style.width=Math.round(100*frac)+'%';
+  if (nota!==undefined) $('dirNota').textContent=nota;
+}
+function cerrarDirecto(){ $('directo').hidden=true; }
+async function enviarDirecto(opts){
+  const silencioso = opts && opts.silencioso;
+  if (bloqueoDemo()) return;
+  if (directoEnCurso || monEnCurso) { if (!silencioso) $('directo').hidden=false; return; }
+  const pend=sinEnviar();
+  if (!pend.length){ if (!silencioso) toast('✓ Todo está enviado a Ecosistémica','ok'); return; }
+  if (!navigator.onLine){ if (!silencioso) toast('Sin señal: se enviará solo al recuperarla','err'); try{ localStorage.setItem('envioPendiente','1'); }catch(_){} return; }
+  directoEnCurso=true; directoDetalle=''; try{ localStorage.setItem('envioPendiente','1'); }catch(_){}
+  if (!silencioso){ $('directo').hidden=false; $('dirOk').hidden=true; $('dirReintentar').hidden=true; $('dirReintentar').onclick=()=>enviarDirecto(); $('dirTit').textContent='📤 Enviando a Ecosistémica'; }
+  pintarDirecto('Preparando '+pend.length+' árbol'+(pend.length===1?'':'es')+'…', 0, 'No cierres la app hasta que termine. Si se corta la señal, lo que falte se envía solo al recuperarla.');
+  let ok=0, fallo=null; const parques=new Set(), quien=new Set();
+  for (let i=0;i<pend.length;i++){
+    const r=pend[i];
+    pintarDirecto('Enviando árbol '+(i+1)+' de '+pend.length+' · '+r.id, i/pend.length);
+    try{
+      const [f1,f2]=await fotosDe(r), fotos={};
+      if (f1) fotos.frente=await blobADataUrl(inyectarSello(dataUrlABytes(f1), selloTexto(selloDeRegistro(r,'frente'))));
+      if (f2) fotos.cenital=await blobADataUrl(inyectarSello(dataUrlABytes(f2), selloTexto(selloDeRegistro(r,'cenital'))));
+      const resp=await postDirecto({ tipo:'arbol', datos:filaDirecto(r), fotos });
+      if (!resp || !resp.ok){ fallo = resp && resp.error==='clave' ? 'clave' : (resp && resp.error) || 'servidor'; directoDetalle = resp && resp.detalle ? resp.detalle : ''; if (!resp || resp.reintentar!==false) break; continue; }
+      /* Se marca «Enviado» solo si llegaron todas las fotos que el árbol tenía */
+      const fotosCompletas=(f1||!r.foto1) && (f2||!r.foto2);
+      const llegaron = resp.duplicado || (resp.fotos||0) >= Object.keys(fotos).length;
+      if (fotosCompletas && llegaron) marcarEnviados('c',[uidDe(r)]);
+      ok++; parques.add(r.parque||r.idParque); quien.add(r.registrante||'');
+    }catch(e){ fallo = e.tipo || 'preparar'; directoDetalle = e.message || String(e); break; }
+  }
+  if (ok){
+    try{ await postDirecto({ tipo:'fin_jornada', datos:{ arboles:ok, brigada:[...quien].filter(Boolean).join(', '), parques:[...parques].filter(Boolean).join(', '),
+      fecha:new Date().toLocaleDateString('es-MX'), detalle:fallo?('incompleto: '+fallo):'' } }); }catch(_){}
+  }
+  directoEnCurso=false;
+  const faltan=sinEnviar().length;
+  if (!faltan){ try{ localStorage.removeItem('envioPendiente'); }catch(_){} }
+  $('dirTit').textContent = faltan ? '⚠️ Envío incompleto' : '✅ Jornada recibida';
+  pintarDirecto(faltan ? ok+' árbol'+(ok===1?'':'es')+' enviado'+(ok===1?'':'s')+' · faltan '+faltan : 'Ecosistémica recibió '+ok+' árbol'+(ok===1?'':'es')+' con sus fotos', faltan ? ok/(ok+faltan) : 1,
+    faltan ? (fallo==='clave' ? 'El servidor rechazó la clave de la app. Avisa a Ecosistémica; mientras, usa el .zip por Gmail.'
+      : fallo==='red' ? 'Se cortó la señal. Lo que falta se envía solo al recuperarla, o toca «Reintentar ahora».'
+      : fallo==='tiempo' ? 'El servidor tardó demasiado en responder. Toca «Reintentar ahora».'
+      : fallo==='conexion' ? 'Hay señal, pero no se pudo conectar con el servidor de Ecosistémica. Toca «Reintentar ahora»; si sigue, usa el .zip por Gmail y avisa a Ecosistémica.'
+      : fallo==='respuesta' ? 'El servidor respondió con una página en lugar de confirmar el árbol (revisar permisos de la implementación). Usa el .zip por Gmail y avisa a Ecosistémica.'
+      : 'El servidor no respondió bien ('+fallo+'). Se reintentará solo; si sigue, usa el .zip por Gmail.')
+      + (directoDetalle ? '\nDetalle técnico: '+directoDetalle : '')
+      : 'Usa «Limpiar» solo cuando ya no necesites estos árboles en el celular: la copia quedó en la hoja maestra de Ecosistémica.');
+  $('dirOk').hidden=false; $('dirReintentar').hidden=!faltan;
+  if (silencioso && !faltan) toast('✅ Se enviaron '+ok+' árbol'+(ok===1?'':'es')+' pendientes a Ecosistémica','ok');
+}
+/* ════════════════════════════════════════════════════════════
+   v41 · HU-45 ENVÍO DIRECTO DE MONITOREO (igual que la jornada)
+   Cada revisita va con su foto al mismo Apps Script (tipo «monitoreo»: pestaña Monitoreo
+   de la hoja maestra y foto en Drive/Fotos/AAAA-MM-DD/Monitoreo). Queda «Enviada» cuando
+   el servidor confirma; lo pendiente se reintenta solo como en la jornada.
+   ════════════════════════════════════════════════════════════ */
+let monEnCurso=false;
+function filaMonitoreo(r){
+  const t=new Date(r.ts||Date.now()), nombres=nombresFotosMonitoreo();
+  return { ID_Monitoreo:r.idMonitoreo, UID:uidDe(r), ID_Arbol:r.idArbol, Fecha_ISO:r.ts||'', Fecha:t.toLocaleDateString('en-CA'),
+    Mes_Revision:r.mes||'', Estado:r.estado||'', DAP_Actual_cm:numONada(r.dap), ID_Parque:String(r.idArbol||'').split('-')[0],
+    Parque:r.parque||'', Nombre_Comun:(r.especie||'').split('(')[0].trim(), Revisado_Por:r.revisor||'', Observaciones:r.obs||'',
+    Latitud:numONada(r.lat), Longitud:numONada(r.lon), Foto:r.foto?nombres[r.idMonitoreo]:'' };
+}
+function guardarMonitoreoLocal(){ try{ localStorage.setItem('monitoreo_v1', JSON.stringify(monitoreoRegistros)); }catch(_){} }
+async function enviarMonitoreoDirecto(opts){
+  const silencioso = opts && opts.silencioso;
+  if (bloqueoDemo()) return;
+  if (monEnCurso || directoEnCurso){ if (!silencioso) $('directo').hidden=false; return; }
+  const pend=monitoreoRegistros.filter(r=>!r.enviado);
+  if (!pend.length){ if (!silencioso) toast('✓ Las revisitas ya están enviadas','ok'); return; }
+  if (!navigator.onLine){ if (!silencioso) toast('Sin señal: se enviarán solas al recuperarla','err'); try{ localStorage.setItem('envioPendienteMon','1'); }catch(_){} return; }
+  monEnCurso=true; directoDetalle=''; try{ localStorage.setItem('envioPendienteMon','1'); }catch(_){}
+  if (!silencioso){ $('directo').hidden=false; $('dirOk').hidden=true; $('dirReintentar').hidden=true; $('dirReintentar').onclick=()=>enviarMonitoreoDirecto(); $('dirTit').textContent='📤 Enviando revisitas'; }
+  let ok=0, fallo=null; const quien=new Set(), parques=new Set();
+  for (let i=0;i<pend.length;i++){
+    const r=pend[i];
+    pintarDirecto('Enviando revisita '+(i+1)+' de '+pend.length+' · '+r.idArbol, i/pend.length, 'No cierres la app hasta que termine. Si se corta la señal, lo que falte se envía solo al recuperarla.');
+    try{
+      const d=await fotoMonDe(r), fotos={};
+      if (d) fotos.revision=await blobADataUrl(inyectarSello(dataUrlABytes(d), selloTexto({ id:r.idArbol, tipo:'revision', lat:r.lat, lon:r.lon, fecha:r.fecha })));
+      const resp=await postDirecto({ tipo:'monitoreo', datos:filaMonitoreo(r), fotos });
+      if (!resp || !resp.ok){ fallo = resp && resp.error==='clave' ? 'clave' : (resp && resp.error) || 'servidor'; directoDetalle = resp && resp.detalle ? resp.detalle : ''; if (!resp || resp.reintentar!==false) break; continue; }
+      if (d || !r.foto){ r.enviado=true; guardarMonitoreoLocal(); }
+      ok++; quien.add(r.revisor||''); parques.add(r.parque||'');
+    }catch(e){ fallo = e.tipo || 'preparar'; directoDetalle = e.message || String(e); break; }
+  }
+  if (ok){ try{ await postDirecto({ tipo:'fin_jornada', datos:{ arboles:ok, brigada:'Monitoreo · '+[...quien].filter(Boolean).join(', '),
+    parques:[...parques].filter(Boolean).join(', '), fecha:new Date().toLocaleDateString('es-MX'), tipo:'monitoreo', detalle:'revisitas de monitoreo'+(fallo?' · incompleto: '+fallo:'') } }); }catch(_){} }
+  monEnCurso=false;
+  renderMonitoreoHoy();
+  const faltan=monitoreoRegistros.filter(r=>!r.enviado).length;
+  if (!faltan){ try{ localStorage.removeItem('envioPendienteMon'); }catch(_){} }
+  $('dirTit').textContent = faltan ? '⚠️ Envío incompleto' : '✅ Revisitas recibidas';
+  pintarDirecto(faltan ? ok+' revisita'+(ok===1?'':'s')+' enviada'+(ok===1?'':'s')+' · faltan '+faltan : 'Ecosistémica recibió '+ok+' revisita'+(ok===1?'':'s')+' con su foto', faltan ? ok/(ok+faltan) : 1,
+    faltan ? (fallo==='clave' ? 'El servidor rechazó la clave de la app. Avisa a Ecosistémica; mientras, usa «Archivos sueltos».'
+      : fallo==='red' ? 'Se cortó la señal. Lo que falta se envía solo al recuperarla, o toca «Reintentar ahora».'
+      : fallo==='tiempo' ? 'El servidor tardó demasiado en responder. Toca «Reintentar ahora».'
+      : fallo==='conexion' ? 'Hay señal, pero no se pudo conectar con el servidor de Ecosistémica. Toca «Reintentar ahora»; si sigue, usa «Archivos sueltos» y avisa a Ecosistémica.'
+      : fallo==='respuesta' ? 'El servidor respondió con una página en lugar de confirmar la revisita (revisar permisos de la implementación). Avisa a Ecosistémica.'
+      : 'El servidor no respondió bien ('+fallo+'). Se reintentará solo; si sigue, usa «Archivos sueltos».')+(directoDetalle?'\nDetalle técnico: '+directoDetalle:'')
+      : 'Usa «Limpiar» cuando ya no necesites estas revisitas en el celular: la copia quedó en la hoja maestra.');
+  $('dirOk').hidden=false; $('dirReintentar').hidden=!faltan;
+  if (silencioso && !faltan) toast('✅ Se enviaron '+ok+' revisita'+(ok===1?'':'s')+' pendientes','ok');
+}
+/* Reintento automático: al recuperar señal, al volver a la app y al abrirla (jornada y monitoreo) */
+function reintentarPendiente(){ try{
+  if (!navigator.onLine || DEMO) return;
+  if (localStorage.getItem('envioPendiente')==='1') setTimeout(()=>enviarDirecto({silencioso:$('directo').hidden}), 1500);
+  else if (localStorage.getItem('envioPendienteMon')==='1') setTimeout(()=>enviarMonitoreoDirecto({silencioso:$('directo').hidden}), 1500);
+}catch(_){} }
+window.addEventListener('online', reintentarPendiente);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) reintentarPendiente(); });
+window.addEventListener('load', reintentarPendiente);
+/* ════════════════════════════════════════════════════════════
    v38 · ENVÍO DE LA JORNADA EN UN .ZIP
    Un solo archivo con el CSV y las fotos selladas (sin recomprimir: el ID dentro
    de cada foto se conserva). Chrome en Android no deja compartir .zip desde una
@@ -3601,7 +3841,7 @@ function limpiarRegistros(){
     : '';
   const pend=sinEnviar().length;
   const avisoEnvio = pend
-    ? '⚠️ '+pend+' de '+registros.length+' árbol(es) NO se han enviado. Usa «Compartir jornada» antes de limpiar.\n\n'
+    ? '⚠️ '+pend+' de '+registros.length+' árbol(es) NO se han enviado. Usa «Enviar a Ecosistémica» antes de limpiar.\n\n'
     : '';
   if (!confirm(avisoEnvio+'¿Borrar '+registros.length+' registros de este celular?'+avisoPap)) return;
   evBorrar(registros.flatMap(r => [claveFoto(r,1), claveFoto(r,2)]));
@@ -3915,6 +4155,16 @@ function candidatoPorUbicacion(lat, lon){
   const seguro = !segundo || segundo.d > mejor.d * 1.5 + 3;
   return { id: mejor.t.id, dist: mejor.d, seguro, motivo: 'ubicación (±'+Math.round(mejor.d)+' m)' };
 }
+/* v41 · HU-38: «6/10/2026, 4:45:15 p.m.» (como la escribe la app), «06/10/2026 16:45» o ISO.
+   Antes se esperaba dd/mm/aaaa con 2 dígitos y el formato de la propia app no se leía. */
+function leerFechaMx(t){
+  t=String(t||'').trim(); if (!t) return NaN;
+  const m=t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:[ ,]+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([ap])?\.?\s*m?\.?)?/i);
+  if (!m) return Date.parse(t);
+  let h=+(m[4]||0); const ap=(m[7]||'').toLowerCase();
+  if (ap==='p' && h<12) h+=12; if (ap==='a' && h===12) h=0;
+  return new Date(+m[3], +m[2]-1, +m[1], h, +(m[5]||0), +(m[6]||0)).getTime();
+}
 function candidatoPorFecha(fecha){
   if (!fecha || !baseMonitoreo.length) return null;
   const conFecha = baseMonitoreo.filter(t => t.ts);
@@ -4016,6 +4266,7 @@ function cargarBaseMonitoreo(input){
       const idxParque=buscarCol(headers,['Parque','Parque o area']);
       const idxEsp=buscarCol(headers,['Nombre_Comun','Especie','Nombre comun']);
       const idxCol=buscarCol(headers,['Colonia']);
+      const idxIso=buscarCol(headers,['Fecha_ISO']);
       const idxFecha=buscarCol(headers,['Fecha_Hora','Fecha','Fecha_Plantacion','Fecha de plantacion']);
       if (idxId<0||idxLat<0||idxLon<0){
         toast('Faltan columnas: se necesitan ID_Arbol, Latitud y Longitud','err');
@@ -4029,7 +4280,7 @@ function cargarBaseMonitoreo(input){
         if (rc.arreglo==='fuera'){ fuera.push(cols[idxId].trim()); continue; }
         if (rc.arreglo) corregidas++;
         const lat=rc.lat, lon=rc.lon;
-        const ts = idxFecha>=0 ? Date.parse((cols[idxFecha]||'').replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1')) : NaN;
+        const ts = idxIso>=0 && cols[idxIso] ? Date.parse(cols[idxIso]) : idxFecha>=0 ? leerFechaMx(cols[idxFecha]) : NaN;
         rows.push({
           id: cols[idxId].trim(),
           lat, lon, ts: isNaN(ts) ? null : ts,
@@ -4249,7 +4500,7 @@ async function guardarMonitoreo(){
   if (!revisor){ toast('Falta quién revisó','err'); return; }
 
   const reg={
-    idMonitoreo: 'MON-'+deviceToken+'-'+String(monitoreoRegistros.length+1).padStart(5,'0'),
+    idMonitoreo: 'MON-'+deviceToken+'-'+String(siguienteMonitoreo()).padStart(5,'0'),
     idArbol: arbolSeleccionado.id,
     parque: arbolSeleccionado.parque,
     especie: arbolSeleccionado.especie,
@@ -4306,15 +4557,32 @@ function renderMonitoreoHoy(){
       <strong>${esc(r.idArbol)}</strong> · ${esc(r.mes||'—')} · ${esc(r.estado)}${r.dap?' · DAP '+esc(r.dap)+' cm':''}<br>
       <span style="font-size:var(--fs-sm);color:var(--c-n-600)">${esc(r.parque||'—')} · Revisó: ${esc(r.revisor)} · ${esc(r.fecha)}</span>
       ${r.obs?'<div style="font-size:var(--fs-sm);margin-top:4px">'+esc(r.obs)+'</div>':''}
+      ${r.enviado?'<span class="mon-card__env">✓ Enviada a Ecosistémica</span>':''}
     </div>`).join('');
+  pintarEnvioMon();
+}
+function pintarEnvioMon(){
+  const pend=monitoreoRegistros.filter(r=>!r.enviado).length, btn=$('btnMonEnviar'); if (!btn) return;
+  btn.hidden = !monitoreoRegistros.length;
+  $('monEnviarTxt').textContent = pend ? 'Enviar a Ecosistémica · '+pend+' sin enviar' : '✓ Revisitas enviadas';
+  btn.classList.toggle('btn-compartir--sec', !pend);
 }
 
 /* Nombre de archivo de cada foto de verificación. Si un árbol se revisó varias veces,
    la segunda y siguientes llevan sufijo _2, _3… El CSV y la descarga usan el mismo nombre. */
+/* v41 · HU-38: contador que no se reinicia al limpiar (antes cada envío empezaba en MON-…-00001) */
+function siguienteMonitoreo(){
+  let n=parseInt(localStorage.getItem('ultimoMon')||'0',10)||0;
+  monitoreoRegistros.forEach(r => { const k=parseInt(String(r.idMonitoreo||'').split('-').pop(),10); if (k>n) n=k; });
+  n++; try{ localStorage.setItem('ultimoMon', String(n)); }catch(_){}
+  return n;
+}
+/* v41 · HU-38: la foto lleva la fecha de la revisita (la de noviembre ya no pisa a la de octubre) */
+function fechaRevisita(r){ const d=new Date(r.ts || leerFechaMx(r.fecha) || Date.now()); return isNaN(d) ? hoyLocal() : d.toLocaleDateString('en-CA'); }
 function nombresFotosMonitoreo(){
   const usados={}, mapa={};
   monitoreoRegistros.forEach(r => {
-    const base = r.idArbol + '_revision';
+    const base = r.idArbol + '_revision_' + fechaRevisita(r);
     usados[base] = (usados[base]||0) + 1;
     mapa[r.idMonitoreo] = base + (usados[base]>1 ? '_'+usados[base] : '') + '.jpg';
   });
@@ -4360,7 +4628,8 @@ function exportCSVMonitoreo(){
 
 function limpiarMonitoreo(){
   if (!monitoreoRegistros.length) return;
-  if (!confirm('¿Borrar '+monitoreoRegistros.length+' revisitas? Exporta el CSV y las fotos primero.')) return;
+  const pendM=monitoreoRegistros.filter(r=>!r.enviado).length;
+  if (!confirm((pendM ? '⚠️ '+pendM+' revisita(s) NO se han enviado a Ecosistémica.\n\n' : '')+'¿Borrar '+monitoreoRegistros.length+' revisitas de este celular?')) return;
   evBorrar(monitoreoRegistros.map(claveFotoMon));
   monitoreoRegistros=[]; localStorage.removeItem('monitoreo_v1'); renderMonitoreoHoy();
   toast('Revisitas eliminadas','ok');
@@ -4418,7 +4687,7 @@ new MutationObserver(ms => { ms.forEach(m => {
    HU-24 menú de pantalla y modo sol · HU-25 guía de primer uso
    HU-27 «Hoy: N» en el encabezado · HU-28 versión visible y «Actualizar ahora»
    ════════════════════════════════════════════════════════════ */
-const APP_VERSION='v39';
+const APP_VERSION='v41';
 let focoPantalla=null;
 function pintarPantalla(){
   document.querySelectorAll('.seg__op').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.fs===fsLevel)));
@@ -4443,7 +4712,7 @@ const GUIA=[
   {logo:true, tit:'Cobertura Vegetal 2026', txt:'Cada árbol que se planta en los parques de Culiacán queda registrado con su ubicación, especie, medidas y 2 fotos de evidencia.', marca:true},
   {ico:'pin', tit:'Permite ubicación y cámara', txt:'La app usa el GPS para ubicar cada árbol y la cámara para sus 2 fotos. Cuando el celular pregunte, toca «Permitir».'},
   {ico:'sun', tit:'Ajusta la pantalla', txt:'Con el botón Aa de arriba a la derecha agrandas la letra o activas el modo sol para leer a pleno sol.'},
-  {ico:'share', tit:'Envía tu jornada', txt:'Al terminar: Registros → Compartir jornada. Se guarda un .zip y se abre Gmail dirigido a Ecosistémica: adjunta el .zip y envía. Usa «Limpiar» solo cuando confirmen que lo recibieron.'}
+  {ico:'share', tit:'Envía tu jornada', txt:'Al terminar: Registros → Enviar a Ecosistémica. Con señal se envía directo, árbol por árbol; si se corta, lo que falte se envía solo después.'}
 ];
 let guiaPaso=0;
 function abrirGuia(n){ guiaPaso=n||0; pintarGuia(); $('guia').hidden=false; setTimeout(()=>$('guiaSig').focus(),40); }
@@ -4477,7 +4746,8 @@ function pintarHoy(){
 function actualizarAhora(){ try{ guardarBorrador(); }catch(_){} $('versionBar').classList.remove('undo--show'); setTimeout(()=>location.reload(), 150); }
 document.addEventListener('keydown', e => {
   if (e.key!=='Escape') return;
-  if (!$('acerca').hidden) cerrarAcerca();
+  if (!$('directo').hidden && !directoEnCurso) cerrarDirecto();
+  else if (!$('acerca').hidden) cerrarAcerca();
   else if (!$('pantalla').hidden) cerrarPantalla();
   else if (!$('guia').hidden) cerrarGuia();
 });
@@ -4486,7 +4756,7 @@ let actualizacionPendiente = false;
 /* v39: además del árbol en captura, no se recarga encima de una revisita a medias, de la hoja
    «Ya lo envié» (al volver de Gmail) ni de un envío en paquetes sin terminar. */
 function ocupadoEnOtraCosa(){
-  return !!(arbolSeleccionado || fotoMonitoreo || !$('zipEnvio').hidden || zipEnCurso
+  return !!(arbolSeleccionado || fotoMonitoreo || !$('zipEnvio').hidden || zipEnCurso || directoEnCurso || monEnCurso
     || $('listoBar').classList.contains('undo--show') || confirmaAbierta);
 }
 if ('serviceWorker' in navigator) {
